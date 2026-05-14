@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pulse-orange: #F44D2B;
+  --color-pure-ink: #0A0A0A;
+  --color-snow: #FAFAFA;
+  --color-gray-dark: #262626;
+  --color-gray-medium: #737373;
+  --color-gray-light: #D4D4D4;
+  --color-warm-cream: #F5EFE7;
+  --color-deep-navy: #0E1530;
+
+  --font-heading: var(--font-tajawal), sans-serif;
+  --font-body: var(--font-ibm-plex), sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-body bg-pure-ink text-snow antialiased min-h-screen;
+    background-image: 
+      radial-gradient(circle at 100% 0%, rgba(244, 77, 43, 0.08) 0%, transparent 40%), 
+      radial-gradient(circle at 0% 100%, rgba(14, 21, 48, 0.4) 0%, transparent 50%);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-pulse-orange text-snow px-6 py-3 rounded-sm font-bold transition-all duration-300 hover:opacity-90 active:scale-95 shadow-lg shadow-pulse-orange/20;
+  }
+  
+  .btn-outline {
+    @apply bg-transparent border border-pulse-orange text-pulse-orange px-6 py-3 rounded-full font-bold transition-all duration-300 hover:bg-pulse-orange hover:text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-dark text-snow border border-gray-medium/30 px-6 py-3 rounded-sm font-bold transition-all hover:bg-gray-dark/80;
+  }
+  
+  .geometric-card {
+    @apply bg-gray-dark/20 border border-gray-dark p-6 transition-all duration-300 hover:border-pulse-orange/50;
+  }
+  
+  .grid-pattern {
+    @apply absolute inset-0 opacity-[0.03] pointer-events-none;
+    background-image: linear-gradient(#FAFAFA 1px, transparent 1px), linear-gradient(90deg, #FAFAFA 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .orange-glow {
+    @apply absolute -z-10 blur-[100px] opacity-20 pointer-events-none bg-pulse-orange rounded-full;
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reverse-spin {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-reverse-spin {
+  animation: reverse-spin 15s linear infinite;
+}
