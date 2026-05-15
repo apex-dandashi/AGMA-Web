@@ -26,6 +26,11 @@ body {
   min-height: 100vh;
 }
 
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
 @layer base {
   body {
     @apply antialiased text-snow bg-pure-ink;

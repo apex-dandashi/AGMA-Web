@@ -18,6 +18,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
+import Magnetic from '@/components/ui/Magnetic';
 import { useScroll, useTransform } from 'framer-motion';
 
 export default function HomeClient() {
@@ -126,12 +127,16 @@ export default function HomeClient() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6"
             >
-              <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center whitespace-nowrap">
-                ابدأ رحلة النمو الآن
-              </Link>
-              <Link href="/services" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
-                استعرض خدماتنا
-              </Link>
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" data-cursor-text="GROW" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center whitespace-nowrap">
+                  ابدأ رحلة النمو الآن
+                </Link>
+              </Magnetic>
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/services" data-cursor-text="EXPLORE" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                  استعرض خدماتنا
+                </Link>
+              </Magnetic>
             </motion.div>
           </motion.div>
         </div>
@@ -140,19 +145,25 @@ export default function HomeClient() {
       {/* Stats / Proof Section */}
       <section className="py-20 border-y border-gray-dark bg-gray-dark/10">
         <div className="container mx-auto px-6">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-x-reverse divide-gray-dark">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-x-reverse divide-gray-dark"
+          >
             {[
               { label: 'النمو المتوسط للعملاء', val: '45%' },
               { label: 'ساعات العمل المؤتمتة', val: '12k+' },
               { label: 'حملات رقمية ناجحة', val: '500+' },
               { label: 'خبير في جيل الذكاء الاصطناعي', val: '40+' },
             ].map((stat, i) => (
-              <div key={i} className="space-y-2 px-4">
+              <motion.div variants={itemVariants} key={i} className="space-y-2 px-4">
                 <div className="text-3xl lg:text-4xl font-black text-pulse-orange font-heading">{stat.val}</div>
                 <div className="text-gray-medium text-sm font-medium">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
-            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -416,9 +427,11 @@ export default function HomeClient() {
                 دعنا نحلل علامتك التجارية ونقدم لك أول استراتيجية نمو مدعومة بالذكاء الاصطناعي مجاناً.
               </p>
               <div className="flex justify-center w-full">
-                <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
-                  احجز مكالمة استراتيجية الآن
-                </Link>
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                    احجز مكالمة استراتيجية الآن
+                  </Link>
+                </Magnetic>
               </div>
             </div>
           </motion.div>

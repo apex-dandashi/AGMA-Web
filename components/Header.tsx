@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Magnetic from './ui/Magnetic';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,35 +36,40 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
-          <Image 
-            src="/logo.svg" 
-            alt="AGMA Logo" 
-            width={240} 
-            height={80} 
-            className="h-16 w-auto object-contain"
-            style={{ width: 'auto' }}
-            priority
-          />
-        </Link>
+        <Magnetic>
+          <Link href="/" className="flex items-center">
+            <Image 
+              src="/logo.svg" 
+              alt="AGMA Logo" 
+              width={240} 
+              height={80} 
+              className="h-16 w-auto object-contain"
+              style={{ width: 'auto' }}
+              priority
+            />
+          </Link>
+        </Magnetic>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors duration-200 ${link.name === 'الرئيسية' ? 'text-pulse-orange' : 'text-gray-light hover:text-snow'}`}
-            >
-              {link.name}
-            </Link>
+            <Magnetic key={link.href}>
+              <Link 
+                href={link.href}
+                className={`text-sm font-medium transition-colors duration-200 ${link.name === 'الرئيسية' ? 'text-pulse-orange' : 'text-gray-light hover:text-snow'}`}
+              >
+                {link.name}
+              </Link>
+            </Magnetic>
           ))}
-          <Link 
-            href="/contact" 
-            className="btn-outline flex items-center justify-center text-sm py-2 px-6"
-          >
-            احجز مكالمة استراتيجية
-          </Link>
+          <Magnetic>
+            <Link 
+              href="/contact" 
+              className="btn-outline flex items-center justify-center text-sm py-2 px-6"
+            >
+              احجز مكالمة استراتيجية
+            </Link>
+          </Magnetic>
         </nav>
 
         {/* Mobile Toggle */}
