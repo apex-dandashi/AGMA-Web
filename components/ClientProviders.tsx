@@ -14,15 +14,12 @@ export default function ClientProviders({ children }: { children: React.ReactNod
     return () => cancelAnimationFrame(handle);
   }, []);
 
-  if (!mounted) {
-    return <div className="bg-[#0A0A0A] min-h-screen text-[#FAFAFA]">{children}</div>;
-  }
-
   return (
-    <SmoothScroll>
-      <AICursor />
-      <CookieConsent />
+    <>
+      {mounted && <SmoothScroll />}
+      {mounted && <AICursor />}
+      {mounted && <CookieConsent />}
       {children}
-    </SmoothScroll>
+    </>
   );
 }

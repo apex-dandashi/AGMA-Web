@@ -18,7 +18,8 @@ html, body {
   color: #FAFAFA !important;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
+  /* Lenis handles smooth scrolling, native smooth can conflict */
+  scroll-behavior: auto !important;
 }
 
 body {
