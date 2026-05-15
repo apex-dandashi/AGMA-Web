@@ -89,3 +89,23 @@ body {
   filter: blur(60px);
   pointer-events: none;
 }
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(250, 250, 250, 0.1);
+  color: transparent !important;
+}
+
+.font-black-arabic {
+  font-weight: 900;
+}
+
+@layer utilities {
+  .tracking-tighter-heading {
+    letter-spacing: -0.05em;
+  }
+}
