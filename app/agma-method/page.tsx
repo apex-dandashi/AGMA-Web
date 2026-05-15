@@ -26,6 +26,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import Link from 'next/link';
+import Magnetic from '@/components/ui/Magnetic';
 
 export default function MethodologyPage() {
   const phases = [
@@ -113,13 +114,17 @@ export default function MethodologyPage() {
             <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
               أربع مراحل مستمرة، كل حرف من اسمنا يمثل مرحلة في دورة نمو ذكية تجمع التحليل، الإنتاج، التسويق، والتحسين المستمر.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="btn-primary w-full sm:w-auto text-lg px-10 py-4">
-                ناقش مشروعك معنا
-              </Link>
-              <Link href="/services" className="btn-secondary w-full sm:w-auto text-lg px-10 py-4">
-                استكشف خدماتنا
-              </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                  ناقش مشروعك معنا
+                </Link>
+              </Magnetic>
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/services" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                  استكشف خدماتنا
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
         </div>
@@ -244,9 +249,13 @@ export default function MethodologyPage() {
               <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
                 دعنا نحلل فرصتك، ونبني لك مسار نمو واضحاً من أول خطوة نحو الريادة في عصر الذكاء الاصطناعي.
               </p>
-              <Link href="/contact" className="btn-primary text-xl px-12 py-5">
-                احجز مكالمة استراتيجية الآن
-              </Link>
+              <div className="flex justify-center w-full">
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                    احجز مكالمة استراتيجية الآن
+                  </Link>
+                </Magnetic>
+              </div>
             </div>
           </div>
         </div>

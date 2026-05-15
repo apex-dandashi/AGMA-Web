@@ -90,13 +90,16 @@ export default function ContactClient() {
               سواء كنت تحتاج حملة، موقع، هوية، أتمتة، أو خطة تسويق كاملة — أخبرنا أين تقف، وسنساعدك على تحديد الخطوة التالية.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6">
-              <Magnetic>
-                <button onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+              <Magnetic className="w-full sm:w-auto">
+                <button 
+                  onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} 
+                  className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap"
+                >
                   اطلب عرض سعر
                 </button>
               </Magnetic>
-              <Magnetic>
-                <Link href="https://calendly.com" target="_blank" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="https://calendly.com" target="_blank" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
                   احجز مكالمة استراتيجية
                 </Link>
               </Magnetic>
@@ -213,11 +216,11 @@ export default function ContactClient() {
                       <textarea rows={4} className="contact-input resize-none" placeholder="أخبرنا باختصار عن مشروعك أو التحدي الذي تواجهه..."></textarea>
                     </div>
 
-                    <Magnetic>
+                    <Magnetic className="w-full">
                       <button 
                         type="submit" 
                         disabled={formState === 'submitting'}
-                        className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50"
+                        className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 whitespace-nowrap"
                       >
                         {formState === 'submitting' ? 'جاري الإرسال...' : (
                           <>
@@ -226,6 +229,10 @@ export default function ContactClient() {
                         )}
                       </button>
                     </Magnetic>
+
+                    <p className="text-[10px] text-gray-medium text-center mt-6 leading-relaxed">
+                      بإرسال هذا النموذج، فإنك توافق على <Link href="/privacy-policy" className="text-pulse-orange hover:underline underline-offset-4">سياسة الخصوصية</Link> و <Link href="/terms" className="text-pulse-orange hover:underline underline-offset-4">الشروط والأحكام</Link> الخاصة بـ AGMA.
+                    </p>
                   </form>
                 )}
               </motion.div>
@@ -330,10 +337,10 @@ export default function ContactClient() {
               أرسل لنا ما تعمل عليه، وسنساعدك على تحويله إلى خطة قابلة للتنفيذ.
             </p>
             <div className="flex justify-center w-full">
-              <Magnetic>
+              <Magnetic className="w-full sm:w-auto">
                 <button 
                   onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 w-full sm:w-auto text-center"
+                  className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 w-full sm:w-auto text-center whitespace-nowrap"
                 >
                   أرسل طلبك الآن
                 </button>

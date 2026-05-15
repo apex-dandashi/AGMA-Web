@@ -125,13 +125,13 @@ export default function HomeClient() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6"
             >
-              <Magnetic>
-                <Link href="/contact" data-cursor-text="GROW" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" data-cursor-text="GROW" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center whitespace-nowrap">
                   ابدأ رحلة النمو الآن
                 </Link>
               </Magnetic>
-              <Magnetic>
-                <Link href="/services" data-cursor-text="EXPLORE" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/services" data-cursor-text="EXPLORE" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
                   استعرض خدماتنا
                 </Link>
               </Magnetic>
@@ -425,8 +425,8 @@ export default function HomeClient() {
                 دعنا نحلل علامتك التجارية ونقدم لك أول استراتيجية نمو مدعومة بالذكاء الاصطناعي مجاناً.
               </p>
               <div className="flex justify-center w-full">
-                <Magnetic>
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center">
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
                     احجز مكالمة استراتيجية الآن
                   </Link>
                 </Magnetic>

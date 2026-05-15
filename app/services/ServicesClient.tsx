@@ -152,14 +152,14 @@ export default function ServicesClient() {
             <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
               كل ما تحتاجه علامتك للنمو في عصر الذكاء الاصطناعي — من التحليل والأتمتة إلى المحتوى، الإعلانات، المواقع، الهوية، والاستراتيجية.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Magnetic>
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-lg px-10 py-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
                   اطلب عرض سعر
                 </Link>
               </Magnetic>
-              <Magnetic>
-                <a href="#services-grid" className="btn-secondary w-full sm:w-auto text-lg px-10 py-4">
+              <Magnetic className="w-full sm:w-auto">
+                <a href="#services-grid" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
                   استكشف الفئات
                 </a>
               </Magnetic>
@@ -317,11 +317,13 @@ export default function ServicesClient() {
               <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
                 سواء كنت تحتاج إلى حملة إعلانية، موقع إلكتروني، هوية بصرية، أتمتة عمليات، أو خطة نمو كاملة — نحن نبدأ من هدفك التجاري ونبني كل شيء حوله.
               </p>
-              <Magnetic>
-                <Link href="/contact" className="btn-primary text-xl px-12 py-5 shadow-2xl shadow-pulse-orange/20 inline-block">
-                  اطلب عرض سعر الآن
-                </Link>
-              </Magnetic>
+              <div className="flex justify-center w-full">
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                    اطلب عرض سعر الآن
+                  </Link>
+                </Magnetic>
+              </div>
             </div>
           </div>
         </div>

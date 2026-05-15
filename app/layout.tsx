@@ -3,6 +3,7 @@ import { Tajawal, IBM_Plex_Sans_Arabic } from 'next/font/google';
 import './globals.css';
 import AICursor from '@/components/AICursor';
 import SmoothScroll from '@/components/SmoothScroll';
+import CookieConsent from '@/components/CookieConsent';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -38,6 +39,7 @@ export default function RootLayout({
         <SmoothScroll>
           <AICursor />
           {children}
+          <CookieConsent />
         </SmoothScroll>
       </body>
     </html>

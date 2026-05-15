@@ -25,6 +25,7 @@ import {
   ChevronLeft
 } from 'lucide-react';
 import Link from 'next/link';
+import Magnetic from '@/components/ui/Magnetic';
 
 export default function PricingPage() {
   const priceCategories = [
@@ -123,13 +124,17 @@ export default function PricingPage() {
             <p className="text-gray-medium text-lg lg:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
               نؤمن أن كل مشروع يحتاج نطاقاً يناسب هدفه، حجمه، وقنواته. لذلك نعرض أسعاراً إرشادية واضحة، ونبني العرض النهائي حسب احتياجك الفعلي.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="btn-primary w-full sm:w-auto text-lg px-10 py-4">
-                اطلب عرض سعر
-              </Link>
-              <Link href="/process" className="btn-secondary w-full sm:w-auto text-lg px-10 py-4">
-                 احجز مكالمة استراتيجية
-              </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                  اطلب عرض سعر
+                </Link>
+              </Magnetic>
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/process" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                   احجز مكالمة استراتيجية
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
         </div>
@@ -255,13 +260,16 @@ export default function PricingPage() {
               <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
                 دعنا نحدد النطاق معك. أرسل لنا احتياجك، وسنقترح أفضل مسار بناءً على أهدافك وميزانيتك المتاحة لتحقيق أقصى أثر.
               </p>
-              <Link href="/contact" className="btn-primary text-xl px-12 py-5 uppercase tracking-wide">
-                اطلب عرض سعر مخصص
-              </Link>
-              <div className="mt-12 flex justify-center gap-8 text-xs text-gray-medium font-bold uppercase tracking-widest">
+              <div className="flex justify-center w-full">
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 uppercase tracking-wide w-full sm:w-auto inline-block text-center whitespace-nowrap">
+                    اطلب عرض سعر مخصص
+                  </Link>
+                </Magnetic>
+              </div>
+              <div className="mt-12 flex flex-wrap justify-center gap-6 sm:gap-8 text-xs text-gray-medium font-bold uppercase tracking-widest px-4">
                 <Link href="/services" className="hover:text-snow">خدماتنا</Link>
                 <Link href="/process" className="hover:text-snow">آلية العمل</Link>
-                <Link href="/contact" className="hover:text-snow">تواصل معنا</Link>
               </div>
             </div>
           </div>

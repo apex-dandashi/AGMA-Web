@@ -72,13 +72,13 @@ export default function AboutPage() {
               تأسست AGMA لتقود تحولاً جديداً في التسويق؛ حيث لا يكون الذكاء الاصطناعي أداة جانبية، بل بنية تشغيلية كاملة تصنع السرعة، الدقة، والنمو القابل للقياس.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
-              <Magnetic>
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
                   احجز مكالمة استراتيجية
                 </Link>
               </Magnetic>
-              <Magnetic>
-                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
                   استكشف منهجيتنا
                 </Link>
               </Magnetic>
@@ -289,8 +289,8 @@ export default function AboutPage() {
                 دعنا نبدأ من فهم علامتك، ثم نبني منظومة نمو تناسب طموحك وجنون تطلعاتك.
               </p>
               <div className="flex justify-center w-full">
-                <Magnetic>
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 w-full sm:w-auto inline-block text-center shadow-2xl shadow-pulse-orange/20">
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 w-full sm:w-auto inline-block text-center shadow-2xl shadow-pulse-orange/20 whitespace-nowrap">
                     احجز مكالمة استراتيجية الآن
                   </Link>
                 </Magnetic>
