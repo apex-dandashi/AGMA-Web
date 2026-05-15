@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'motion/react';
 
 const AICursor = () => {
-  const [mounted, setMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [cursorText, setCursorText] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -17,8 +18,11 @@ const AICursor = () => {
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const isMobile = window.matchMedia('(pointer: coarse)').matches;
-    if (isMobile) return;
+    setIsMounted(true);
+    const mobileCheck = window.matchMedia('(pointer: coarse)').matches;
+    setIsMobile(mobileCheck);
+    
+    if (mobileCheck) return;
 
     // Add class to hide native cursor once custom one is ready
     document.documentElement.classList.add('custom-cursor-active');
@@ -56,16 +60,7 @@ const AICursor = () => {
     };
   }, [isVisible, mouseX, mouseY]);
 
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  if (!mounted) return null;
-
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    return null;
-  }
+  if (!isMounted || isMobile) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999]">

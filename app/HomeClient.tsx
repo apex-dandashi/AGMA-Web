@@ -22,10 +22,19 @@ import Magnetic from '@/components/ui/Magnetic';
 import { useScroll, useTransform } from 'motion/react';
 
 export default function HomeClient() {
+  const [isMounted, setIsMounted] = React.useState(false);
   const { scrollY } = useScroll();
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const y1 = useTransform(scrollY, [0, 500], [0, 100]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
   const rotation = useTransform(scrollY, [0, 1000], [0, 45]);
+
+  if (!isMounted) return null;
+
   const agmaMethod = [
     { letter: 'A', name: 'Analyze', nameAr: 'تحليل', desc: 'نبدأ بالتعمق في بياناتك، منافسيك، وسلوك جمهورك باستخدام أدوات تحليل ذكية تتنبأ بالفرص قبل حدوثها.' },
     { letter: 'G', name: 'Generate', nameAr: 'توليد', desc: 'نقوم بتوليد أفكار ومحتوى وحلول إبداعية مدعومة بالذكاء الاصطناعي، تضمن التميز والسرعة في التنفيذ.' },

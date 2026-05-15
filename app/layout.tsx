@@ -9,12 +9,14 @@ const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['400', '500', '700', '800', '900'],
   variable: '--font-tajawal',
+  display: 'swap',
 });
 
 const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
   subsets: ['arabic'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-ibm-plex',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {

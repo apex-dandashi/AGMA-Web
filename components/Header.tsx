@@ -9,10 +9,12 @@ import { Menu, X } from 'lucide-react';
 import Magnetic from './ui/Magnetic';
 
 const Header = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -29,6 +31,8 @@ const Header = () => {
     { name: 'القطاعات', href: '/industries' },
     { name: 'التسعير', href: '/pricing' },
   ];
+
+  if (!isMounted) return null;
 
   return (
     <header 

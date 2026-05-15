@@ -68,31 +68,31 @@ const loadTrackingScripts = (consent: ConsentSettings) => {
 };
 
 export default function CookieConsent() {
-  const [hasChecked, setHasChecked] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [consent, setConsent] = useState<ConsentSettings>(DEFAULT_CONSENT);
 
   useEffect(() => {
-    const savedConsent = localStorage.getItem('agma-cookie-consent');
+    setIsMounted(true);
     
-    // Defer state updates to avoid "synchronous setState in effect" error
-    const timer = setTimeout(() => {
+    // Check localStorage safely
+    try {
+      const savedConsent = localStorage.getItem('agma-cookie-consent');
       if (!savedConsent) {
         setShowBanner(true);
       } else {
-        try {
-          const parsed = JSON.parse(savedConsent);
-          setConsent(parsed);
+        const parsed = JSON.parse(savedConsent);
+        setConsent(parsed);
+        // Only load scripts if we're definitely on the client
+        if (typeof window !== 'undefined') {
           loadTrackingScripts(parsed);
-        } catch (e) {
-          setShowBanner(true);
         }
       }
-      setHasChecked(true);
-    }, 0);
-
-    return () => clearTimeout(timer);
+    } catch (e) {
+      console.error('Error reading cookie consent:', e);
+      setShowBanner(true); // Fallback to showing banner if error
+    }
   }, []);
 
   const handleAcceptAll = () => {
@@ -104,14 +104,18 @@ export default function CookieConsent() {
   };
 
   const saveConsent = (settings: ConsentSettings) => {
-    localStorage.setItem('agma-cookie-consent', JSON.stringify(settings));
-    setConsent(settings);
-    loadTrackingScripts(settings);
+    try {
+      localStorage.setItem('agma-cookie-consent', JSON.stringify(settings));
+      setConsent(settings);
+      loadTrackingScripts(settings);
+    } catch (e) {
+      console.error('Error saving cookie consent:', e);
+    }
     setShowBanner(false);
     setShowModal(false);
   };
 
-  if (!hasChecked) return null;
+  if (!isMounted) return null;
   if (!showBanner && !showModal) return null;
 
   return (
