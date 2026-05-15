@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
+import Tilt from '@/components/ui/Tilt';
 import { useScroll, useTransform } from 'framer-motion';
 
 export default function HomeClient() {
@@ -67,7 +68,7 @@ export default function HomeClient() {
   };
 
   return (
-    <main className="min-h-screen relative" suppressHydrationWarning>
+    <main className="min-h-screen relative overflow-hidden" suppressHydrationWarning>
       <Header />
 
       {/* Hero Section */}
@@ -121,14 +122,23 @@ export default function HomeClient() {
             >
               AGMA هي وكالة جيل الذكاء الاصطناعي. نجمع بين الأتمتة المتقدمة والبيانات الدقيقة والإبداع البشري لتحقيق نمو استراتيجي لشركات المملكة الواعدة.
             </motion.p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6">
-              <Link href="/contact" data-cursor-text="GROW" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center whitespace-nowrap">
-                ابدأ رحلة النمو الآن
-              </Link>
-              <Link href="/services" data-cursor-text="EXPLORE" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
-                استعرض خدماتنا
-              </Link>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6"
+            >
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/contact" data-cursor-text="GROW" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center transition-all duration-300">
+                  ابدأ رحلة النمو الآن
+                </Link>
+              </Magnetic>
+              <Magnetic className="w-full sm:w-auto">
+                <Link href="/services" data-cursor-text="EXPLORE" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center transition-all duration-300">
+                  استعرض خدماتنا
+                </Link>
+              </Magnetic>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -188,82 +198,89 @@ export default function HomeClient() {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-4"
           >
-            {/* Step 01: Analyze */}
-            <motion.div 
-              variants={itemVariants}
-              data-cursor-text="ANALYZE"
-              className="md:col-span-2 min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
-            >
-              <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">01</div>
-              <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-4 text-snow">
-                  {agmaMethod[0].name} — {agmaMethod[0].nameAr}
-                </h3>
-                <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
-                  {agmaMethod[0].desc}
-                </p>
-              </div>
-              {/* Decorative data scan line */}
-              <div className="absolute top-0 right-0 w-32 h-full bg-pulse-orange/5 blur-3xl -skew-x-12 animate-pulse" />
-            </motion.div>
+            <Tilt className="md:col-span-2">
+              <motion.div 
+                variants={itemVariants}
+                data-cursor-text="ANALYZE"
+                className="w-full min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
+              >
+                <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">01</div>
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-bold mb-4 text-snow">
+                    {agmaMethod[0].name} — {agmaMethod[0].nameAr}
+                  </h3>
+                  <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
+                    {agmaMethod[0].desc}
+                  </p>
+                </div>
+                {/* Decorative data scan line */}
+                <div className="absolute top-0 right-0 w-32 h-full bg-pulse-orange/5 blur-3xl -skew-x-12 animate-pulse" />
+              </motion.div>
+            </Tilt>
 
             {/* Step 02: Generate */}
-            <motion.div 
-              variants={itemVariants}
-              data-cursor-text="GENERATE"
-              className="md:col-span-1 min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
-            >
-              <div className="text-4xl font-black text-pulse-orange/10 font-mono">02</div>
-              <div>
-                <h3 className="text-2xl font-bold mb-3 text-snow">
-                  {agmaMethod[1].nameAr}
-                </h3>
-                <p className="text-gray-medium text-xs leading-relaxed">
-                  {agmaMethod[1].desc}
-                </p>
-              </div>
-            </motion.div>
+            <Tilt className="md:col-span-1">
+              <motion.div 
+                variants={itemVariants}
+                data-cursor-text="GENERATE"
+                className="w-full min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
+              >
+                <div className="text-4xl font-black text-pulse-orange/10 font-mono">02</div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-3 text-snow">
+                    {agmaMethod[1].nameAr}
+                  </h3>
+                  <p className="text-gray-medium text-xs leading-relaxed">
+                    {agmaMethod[1].desc}
+                  </p>
+                </div>
+              </motion.div>
+            </Tilt>
 
             {/* Step 03: Market */}
-            <motion.div 
-              variants={itemVariants}
-              data-cursor-text="MARKET"
-              className="md:col-span-1 min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
-            >
-              <div className="text-4xl font-black text-pulse-orange/10 font-mono">03</div>
-              <div>
-                <h3 className="text-2xl font-bold mb-3 text-snow">
-                  {agmaMethod[2].nameAr}
-                </h3>
-                <p className="text-gray-medium text-xs leading-relaxed">
-                  {agmaMethod[2].desc}
-                </p>
-              </div>
-            </motion.div>
+            <Tilt className="md:col-span-1">
+              <motion.div 
+                variants={itemVariants}
+                data-cursor-text="MARKET"
+                className="w-full min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
+              >
+                <div className="text-4xl font-black text-pulse-orange/10 font-mono">03</div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-3 text-snow">
+                    {agmaMethod[2].nameAr}
+                  </h3>
+                  <p className="text-gray-medium text-xs leading-relaxed">
+                    {agmaMethod[2].desc}
+                  </p>
+                </div>
+              </motion.div>
+            </Tilt>
 
             {/* Step 04: Adapt */}
-            <motion.div 
-              variants={itemVariants}
-              data-cursor-text="ADAPT"
-              className="md:col-span-2 min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
-            >
-              <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">04</div>
-              <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-4 text-snow">
-                  {agmaMethod[3].name} — {agmaMethod[3].nameAr}
-                </h3>
-                <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
-                  {agmaMethod[3].desc}
-                </p>
-              </div>
-              {/* Terminal-like text decoration */}
-              <div className="absolute top-8 right-8 font-mono text-[8px] text-pulse-orange/20 text-right leading-tight hidden lg:block">
-                OPTIMIZING_LOOP...<br />
-                DATA_FEED: ACTIVE<br />
-                ROI_TRACKING: TRUE<br />
-                ADAPTIVE_ENGINE: v4.0.2
-              </div>
-            </motion.div>
+            <Tilt className="md:col-span-2">
+              <motion.div 
+                variants={itemVariants}
+                data-cursor-text="ADAPT"
+                className="w-full min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
+              >
+                <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">04</div>
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-bold mb-4 text-snow">
+                    {agmaMethod[3].name} — {agmaMethod[3].nameAr}
+                  </h3>
+                  <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
+                    {agmaMethod[3].desc}
+                  </p>
+                </div>
+                {/* Terminal-like text decoration */}
+                <div className="absolute top-8 right-8 font-mono text-[8px] text-pulse-orange/20 text-right leading-tight hidden lg:block">
+                  OPTIMIZING_LOOP...<br />
+                  DATA_FEED: ACTIVE<br />
+                  ROI_TRACKING: TRUE<br />
+                  ADAPTIVE_ENGINE: v4.0.2
+                </div>
+              </motion.div>
+            </Tilt>
           </motion.div>
         </div>
       </section>
@@ -298,46 +315,48 @@ export default function HomeClient() {
                 variants={itemVariants}
                 initial="initial"
                 whileHover="hover"
-                className="relative"
+                className="relative h-full"
               >
-                <Link 
-                  href={`/services#${service.id || ''}`} 
-                  data-cursor-text="VIEW"
-                  className="group block h-full p-8 rounded-3xl border border-snow/5 bg-gray-dark/30 hover:bg-pulse-orange/5 hover:border-pulse-orange/30 transition-all duration-500 relative overflow-hidden"
-                >
-                  {/* Digital Scan Line Effect */}
-                  <div className="absolute inset-0 z-0 pointer-events-none">
-                    <motion.div 
-                      variants={{
-                        initial: { top: "-10%", opacity: 0 },
-                        hover: { top: "110%", opacity: 1 }
-                      }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="absolute left-0 right-0 h-[3px] bg-pulse-orange shadow-[0_0_20px_rgba(244,77,43,1)] z-20"
-                    />
-                    
-                    <motion.div 
-                      variants={{
-                        initial: { top: "-40%", opacity: 0 },
-                        hover: { top: "110%", opacity: 0.4 }
-                      }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="absolute left-0 right-0 h-40 bg-gradient-to-b from-pulse-orange/50 via-pulse-orange/10 to-transparent z-10"
-                    />
-                  </div>
-
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-2xl bg-pulse-orange/10 flex items-center justify-center mb-6 text-pulse-orange group-hover:scale-110 transition-transform">
-                      <service.icon size={24} />
+                <Tilt className="h-full">
+                  <Link 
+                    href={`/services#${service.id || ''}`} 
+                    data-cursor-text="VIEW"
+                    className="group block h-full p-8 rounded-3xl border border-snow/5 bg-gray-dark/30 hover:bg-pulse-orange/5 hover:border-pulse-orange/30 transition-all duration-500 relative overflow-hidden"
+                  >
+                    {/* Digital Scan Line Effect */}
+                    <div className="absolute inset-0 z-0 pointer-events-none">
+                      <motion.div 
+                        variants={{
+                          initial: { top: "-10%", opacity: 0 },
+                          hover: { top: "110%", opacity: 1 }
+                        }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute left-0 right-0 h-[3px] bg-pulse-orange shadow-[0_0_20px_rgba(244,77,43,1)] z-20"
+                      />
+                      
+                      <motion.div 
+                        variants={{
+                          initial: { top: "-40%", opacity: 0 },
+                          hover: { top: "110%", opacity: 0.4 }
+                        }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute left-0 right-0 h-40 bg-gradient-to-b from-pulse-orange/50 via-pulse-orange/10 to-transparent z-10"
+                      />
                     </div>
-                    <h3 className="text-xl font-bold mb-3 text-snow group-hover:text-pulse-orange transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-medium text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-                </Link>
+
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 rounded-2xl bg-pulse-orange/10 flex items-center justify-center mb-6 text-pulse-orange group-hover:scale-110 transition-transform">
+                        <service.icon size={24} />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3 text-snow group-hover:text-pulse-orange transition-colors">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-medium text-sm leading-relaxed">
+                        {service.desc}
+                      </p>
+                    </div>
+                  </Link>
+                </Tilt>
               </motion.div>
             ))}
           </motion.div>
@@ -418,9 +437,11 @@ export default function HomeClient() {
                 دعنا نحلل علامتك التجارية ونقدم لك أول استراتيجية نمو مدعومة بالذكاء الاصطناعي مجاناً.
               </p>
               <div className="flex justify-center w-full">
-                <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
-                  احجز مكالمة استراتيجية الآن
-                </Link>
+                <Magnetic className="w-full sm:w-auto">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center transition-all duration-300">
+                    احجز مكالمة استراتيجية الآن
+                  </Link>
+                </Magnetic>
               </div>
             </div>
           </motion.div>

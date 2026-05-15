@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
+import Tilt from '@/components/ui/Tilt';
 
 export default function PricingPage() {
   const priceCategories = [
@@ -126,12 +127,12 @@ export default function PricingPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   اطلب عرض سعر
                 </Link>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/process" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/process" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                    احجز مكالمة استراتيجية
                 </Link>
               </Magnetic>
@@ -188,23 +189,27 @@ export default function PricingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="geometric-card bg-gray-dark/5 p-8 flex flex-col border border-gray-dark/50"
+                className="relative h-full"
               >
-                <div className="flex items-center gap-4 mb-8">
-                   <div className="w-12 h-12 bg-pulse-orange/10 flex items-center justify-center text-pulse-orange">
-                      <cat.icon size={24} />
-                   </div>
-                   <h3 className="text-xl font-bold text-snow">{cat.title}</h3>
-                </div>
-                
-                <div className="space-y-6 flex-grow">
-                   {cat.items.map((item, ii) => (
-                     <div key={ii} className="flex flex-col gap-1 border-b border-gray-dark/30 pb-4 last:border-0 last:pb-0">
-                        <span className="text-gray-medium text-sm font-medium">{item.name}</span>
-                        <span className="text-snow font-bold">{item.price}</span>
-                     </div>
-                   ))}
-                </div>
+                <Tilt className="h-full">
+                  <div className="geometric-card bg-gray-dark/5 p-8 flex flex-col border border-gray-dark/50 h-full w-full">
+                    <div className="flex items-center gap-4 mb-8">
+                       <div className="w-12 h-12 bg-pulse-orange/10 flex items-center justify-center text-pulse-orange">
+                          <cat.icon size={24} />
+                       </div>
+                       <h3 className="text-xl font-bold text-snow">{cat.title}</h3>
+                    </div>
+                    
+                    <div className="space-y-6 flex-grow">
+                       {cat.items.map((item, ii) => (
+                         <div key={ii} className="flex flex-col gap-1 border-b border-gray-dark/30 pb-4 last:border-0 last:pb-0">
+                            <span className="text-gray-medium text-sm font-medium">{item.name}</span>
+                            <span className="text-snow font-bold">{item.price}</span>
+                         </div>
+                       ))}
+                    </div>
+                  </div>
+                </Tilt>
               </motion.div>
             ))}
           </div>
@@ -237,11 +242,13 @@ export default function PricingPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
              {requestSteps.map((step, i) => (
-               <div key={i} className="p-8 border border-gray-dark bg-pure-ink group hover:border-pulse-orange/30 transition-all flex flex-col items-center text-center">
-                  <span className="text-pulse-orange font-mono font-bold text-xs mb-4 block">0{i+1}</span>
-                  <h4 className="text-snow font-bold mb-2 group-hover:text-pulse-orange transition-colors">{step.title}</h4>
-                  <p className="text-gray-medium text-xs leading-relaxed">{step.desc}</p>
-               </div>
+               <Tilt key={i}>
+                 <div className="p-8 border border-gray-dark bg-pure-ink group hover:border-pulse-orange/30 transition-all flex flex-col items-center text-center h-full">
+                    <span className="text-pulse-orange font-mono font-bold text-xs mb-4 block">0{i+1}</span>
+                    <h4 className="text-snow font-bold mb-2 group-hover:text-pulse-orange transition-colors">{step.title}</h4>
+                    <p className="text-gray-medium text-xs leading-relaxed">{step.desc}</p>
+                 </div>
+               </Tilt>
              ))}
           </div>
         </div>
@@ -262,7 +269,7 @@ export default function PricingPage() {
               </p>
               <div className="flex justify-center w-full">
                 <Magnetic className="w-full sm:w-auto">
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 uppercase tracking-wide w-full sm:w-auto inline-block text-center whitespace-nowrap">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 uppercase tracking-wide w-full sm:w-auto inline-block text-center">
                     اطلب عرض سعر مخصص
                   </Link>
                 </Magnetic>

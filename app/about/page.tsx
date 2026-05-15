@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
+import Tilt from '@/components/ui/Tilt';
 
 export default function AboutPage() {
   const values = [
@@ -73,12 +74,12 @@ export default function AboutPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   احجز مكالمة استراتيجية
                 </Link>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   استكشف منهجيتنا
                 </Link>
               </Magnetic>
@@ -145,21 +146,27 @@ export default function AboutPage() {
               نحن سعوديو المنشأ، نمتلك فهماً عميقاً ونابعاً من الجذور للحراك الثقافي والاقتصادي في المملكة. ندرك سرعة التحول التي تفرضها رؤية 2030، ونعرف لغة السوق السعودي والخليجي ليس كنصوص مترجمة، بل كواقع نعيشه يومياً.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8">
-              <div className="geometric-card p-8 bg-gray-dark/5">
-                <div className="text-3xl font-black text-pulse-orange mb-2 font-heading">01</div>
-                <h4 className="text-snow font-bold mb-2">اللغة المحلية</h4>
-                <p className="text-xs text-gray-medium font-medium leading-relaxed">نكتب ونتواصل بلهجة السوق وروحه، بعيداً عن القوالب المترجمة الجاهزة.</p>
-              </div>
-              <div className="geometric-card p-8 bg-gray-dark/5">
-                <div className="text-3xl font-black text-pulse-orange mb-2 font-heading">02</div>
-                <h4 className="text-snow font-bold mb-2">سرعة الرؤية</h4>
-                <p className="text-xs text-gray-medium font-medium leading-relaxed">نتحرك بنفس إيقاع التحول الوطني، حيث الوقت هو المورد الأثمن لعملائنا.</p>
-              </div>
-              <div className="geometric-card p-8 bg-gray-dark/5">
-                <div className="text-3xl font-black text-pulse-orange mb-2 font-heading">03</div>
-                <h4 className="text-snow font-bold mb-2">خبرة البيانات</h4>
-                <p className="text-xs text-gray-medium font-medium leading-relaxed">نمتلك مخازن بيانات ثرية حول سلوك المستهلك المحلي والفرص القطاعية.</p>
-              </div>
+              <Tilt className="h-full">
+                <div className="geometric-card p-8 bg-gray-dark/5 h-full">
+                  <div className="text-3xl font-black text-pulse-orange mb-2 font-heading">01</div>
+                  <h4 className="text-snow font-bold mb-2">اللغة المحلية</h4>
+                  <p className="text-xs text-gray-medium font-medium leading-relaxed">نكتب ونتواصل بلهجة السوق وروحه، بعيداً عن القوالب المترجمة الجاهزة.</p>
+                </div>
+              </Tilt>
+              <Tilt className="h-full">
+                <div className="geometric-card p-8 bg-gray-dark/5 h-full">
+                  <div className="text-3xl font-black text-pulse-orange mb-2 font-heading">02</div>
+                  <h4 className="text-snow font-bold mb-2">سرعة الرؤية</h4>
+                  <p className="text-xs text-gray-medium font-medium leading-relaxed">نتحرك بنفس إيقاع التحول الوطني، حيث الوقت هو المورد الأثمن لعملائنا.</p>
+                </div>
+              </Tilt>
+              <Tilt className="h-full">
+                <div className="geometric-card p-8 bg-gray-dark/5 h-full">
+                  <div className="text-3xl font-black text-pulse-orange mb-2 font-heading">03</div>
+                  <h4 className="text-snow font-bold mb-2">خبرة البيانات</h4>
+                  <p className="text-xs text-gray-medium font-medium leading-relaxed">نمتلك مخازن بيانات ثرية حول سلوك المستهلك المحلي والفرص القطاعية.</p>
+                </div>
+              </Tilt>
             </div>
           </div>
         </div>
@@ -170,7 +177,7 @@ export default function AboutPage() {
         <div className="grid-pattern opacity-[0.02]" />
         <div className="container mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-             <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
+              <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
                 {[
                   { label: 'البحث والتحليل', icon: Eye },
                   { label: 'إنتاج المحتوى', icon: Zap },
@@ -179,12 +186,14 @@ export default function AboutPage() {
                   { label: 'القياس الفوري', icon: Box },
                   { label: 'التحسين المستمر', icon: ArrowLeft },
                 ].map((item, i) => (
-                  <div key={i} className="geometric-card flex flex-col items-center justify-center p-8 gap-4 group">
-                    <item.icon className="text-pulse-orange w-8 h-8 group-hover:scale-110 transition-transform" />
-                    <span className="text-snow font-bold text-sm text-center">{item.label}</span>
-                  </div>
+                  <Tilt key={i}>
+                    <div className="geometric-card flex flex-col items-center justify-center p-8 gap-4 group h-full">
+                      <item.icon className="text-pulse-orange w-8 h-8 group-hover:scale-110 transition-transform" />
+                      <span className="text-snow font-bold text-sm text-center">{item.label}</span>
+                    </div>
+                  </Tilt>
                 ))}
-             </div>
+              </div>
              <div className="order-1 lg:order-2 space-y-8">
                 <h2 className="text-4xl lg:text-5xl font-bold text-snow leading-tight">
                   نحن لا نستخدم الذكاء الاصطناعي... <br />
@@ -290,7 +299,7 @@ export default function AboutPage() {
               </p>
               <div className="flex justify-center w-full">
                 <Magnetic className="w-full sm:w-auto">
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 w-full sm:w-auto inline-block text-center shadow-2xl shadow-pulse-orange/20 whitespace-nowrap">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 w-full sm:w-auto inline-block text-center shadow-2xl shadow-pulse-orange/20">
                     احجز مكالمة استراتيجية الآن
                   </Link>
                 </Magnetic>

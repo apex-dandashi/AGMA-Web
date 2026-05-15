@@ -93,13 +93,13 @@ export default function ContactClient() {
               <Magnetic className="w-full sm:w-auto">
                 <button 
                   onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} 
-                  className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap"
+                  className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center"
                 >
                   اطلب عرض سعر
                 </button>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <Link href="https://calendly.com" target="_blank" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="https://calendly.com" target="_blank" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   احجز مكالمة استراتيجية
                 </Link>
               </Magnetic>
@@ -220,7 +220,7 @@ export default function ContactClient() {
                       <button 
                         type="submit" 
                         disabled={formState === 'submitting'}
-                        className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50 whitespace-nowrap"
+                        className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50"
                       >
                         {formState === 'submitting' ? 'جاري الإرسال...' : (
                           <>
@@ -340,7 +340,7 @@ export default function ContactClient() {
               <Magnetic className="w-full sm:w-auto">
                 <button 
                   onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 w-full sm:w-auto text-center whitespace-nowrap"
+                  className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 w-full sm:w-auto text-center"
                 >
                   أرسل طلبك الآن
                 </button>

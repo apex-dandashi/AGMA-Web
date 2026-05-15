@@ -89,12 +89,12 @@ export default function ProcessPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   احجز مكالمة استراتيجية
                 </Link>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                    استكشف منهجيتنا
                 </Link>
               </Magnetic>
@@ -239,7 +239,7 @@ export default function ProcessPage() {
               </p>
               <div className="flex justify-center w-full">
                 <Magnetic className="w-full sm:w-auto">
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center">
                     احجز مكالمة استراتيجية
                   </Link>
                 </Magnetic>

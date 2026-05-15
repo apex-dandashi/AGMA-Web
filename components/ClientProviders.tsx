@@ -16,16 +16,11 @@ export default function ClientProviders({ children }: { children: React.ReactNod
 
   return (
     <>
-      <div id="content-root">
+      <AICursor />
+      <CookieConsent />
+      <SmoothScroll>
         {children}
-      </div>
-      {mounted && (
-        <>
-          <AICursor />
-          <SmoothScroll />
-          <CookieConsent />
-        </>
-      )}
+      </SmoothScroll>
     </>
   );
 }

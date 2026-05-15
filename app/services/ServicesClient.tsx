@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
+import Tilt from '@/components/ui/Tilt';
 
 const servicesData = [
 // ... (rest of data stays same)
@@ -154,12 +155,12 @@ export default function ServicesClient() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6">
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   اطلب عرض سعر
                 </Link>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <a href="#services-grid" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <a href="#services-grid" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   استكشف الفئات
                 </a>
               </Magnetic>
@@ -194,55 +195,57 @@ export default function ServicesClient() {
                 whileHover="hover"
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="relative"
+                className="relative h-full"
               >
-                <div 
-                  className="geometric-card bg-gray-dark/10 p-8 flex flex-col h-full group relative overflow-hidden"
-                >
-                  {/* Digital Scan Line Effect */}
-                  <div className="absolute inset-0 z-0 pointer-events-none">
-                    <motion.div 
-                      variants={{
-                        initial: { top: "-10%", opacity: 0 },
-                        hover: { top: "110%", opacity: 1 }
-                      }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="absolute left-0 right-0 h-[3px] bg-pulse-orange shadow-[0_0_20px_rgba(244,77,43,1)] z-20"
-                    />
-                    <motion.div 
-                      variants={{
-                        initial: { top: "-40%", opacity: 0 },
-                        hover: { top: "110%", opacity: 0.4 }
-                      }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
-                      className="absolute left-0 right-0 h-40 bg-gradient-to-b from-pulse-orange/50 via-pulse-orange/10 to-transparent z-10"
-                    />
-                  </div>
+                <Tilt className="h-full">
+                  <div 
+                    className="geometric-card bg-gray-dark/10 p-8 flex flex-col h-full group relative overflow-hidden w-full"
+                  >
+                    {/* Digital Scan Line Effect */}
+                    <div className="absolute inset-0 z-0 pointer-events-none">
+                      <motion.div 
+                        variants={{
+                          initial: { top: "-10%", opacity: 0 },
+                          hover: { top: "110%", opacity: 1 }
+                        }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute left-0 right-0 h-[3px] bg-pulse-orange shadow-[0_0_20px_rgba(244,77,43,1)] z-20"
+                      />
+                      <motion.div 
+                        variants={{
+                          initial: { top: "-40%", opacity: 0 },
+                          hover: { top: "110%", opacity: 0.4 }
+                        }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute left-0 right-0 h-40 bg-gradient-to-b from-pulse-orange/50 via-pulse-orange/10 to-transparent z-10"
+                      />
+                    </div>
 
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 bg-pulse-orange/10 rounded-sm flex items-center justify-center text-pulse-orange mb-6 group-hover:bg-pulse-orange group-hover:text-snow transition-colors">
-                      <service.icon size={24} />
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 bg-pulse-orange/10 rounded-sm flex items-center justify-center text-pulse-orange mb-6 group-hover:bg-pulse-orange group-hover:text-snow transition-colors">
+                        <service.icon size={24} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-snow mb-4 leading-tight">{service.title}</h3>
+                      <p className="text-gray-medium text-sm leading-relaxed mb-8 flex-grow font-medium">
+                        {service.desc}
+                      </p>
+                      <div className="space-y-3 mb-8">
+                        {service.subServices.map((sub, idx) => (
+                          <div key={idx} className="flex items-start gap-2 text-xs text-snow/70">
+                            <Check className="text-pulse-orange w-3 h-3 mt-0.5 flex-shrink-0" />
+                            <span>{sub}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <Link 
+                        href={service.link} 
+                        className="text-pulse-orange text-sm font-bold flex items-center gap-2 group/link"
+                      >
+                        التفاصيل <ChevronLeft size={16} className="group-hover/link:-translate-x-1 transition-transform" />
+                      </Link>
                     </div>
-                    <h3 className="text-2xl font-bold text-snow mb-4 leading-tight">{service.title}</h3>
-                    <p className="text-gray-medium text-sm leading-relaxed mb-8 flex-grow font-medium">
-                      {service.desc}
-                    </p>
-                    <div className="space-y-3 mb-8">
-                      {service.subServices.map((sub, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs text-snow/70">
-                          <Check className="text-pulse-orange w-3 h-3 mt-0.5 flex-shrink-0" />
-                          <span>{sub}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Link 
-                      href={service.link} 
-                      className="text-pulse-orange text-sm font-bold flex items-center gap-2 group/link"
-                    >
-                      التفاصيل <ChevronLeft size={16} className="group-hover/link:-translate-x-1 transition-transform" />
-                    </Link>
                   </div>
-                </div>
+                </Tilt>
               </motion.div>
             ))}
           </div>
@@ -319,7 +322,7 @@ export default function ServicesClient() {
               </p>
               <div className="flex justify-center w-full">
                 <Magnetic className="w-full sm:w-auto">
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center">
                     اطلب عرض سعر الآن
                   </Link>
                 </Magnetic>

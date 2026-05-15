@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
+import Tilt from '@/components/ui/Tilt';
 
 export default function MethodologyPage() {
   const phases = [
@@ -116,12 +117,12 @@ export default function MethodologyPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   ناقش مشروعك معنا
                 </Link>
               </Magnetic>
               <Magnetic className="w-full sm:w-auto">
-                <Link href="/services" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                <Link href="/services" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
                   استكشف خدماتنا
                 </Link>
               </Magnetic>
@@ -176,10 +177,12 @@ export default function MethodologyPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   {phase.items.map((item, idx) => (
-                    <div key={idx} className="geometric-card bg-gray-dark/5 p-4 flex items-center gap-3 group">
-                      <item.icon className="text-pulse-orange w-5 h-5 group-hover:scale-110 transition-transform" />
-                      <span className="text-snow font-bold text-xs">{item.label}</span>
-                    </div>
+                    <Tilt key={idx}>
+                      <div className="geometric-card bg-gray-dark/5 p-4 flex items-center gap-3 group h-full">
+                        <item.icon className="text-pulse-orange w-5 h-5 group-hover:scale-110 transition-transform" />
+                        <span className="text-snow font-bold text-xs">{item.label}</span>
+                      </div>
+                    </Tilt>
                   ))}
                 </div>
               </div>
@@ -224,13 +227,15 @@ export default function MethodologyPage() {
               { title: 'الذكاء الاصطناعي كنظام', desc: 'AI ليس مجرد أداة إضافية، بل هو جزء من البنية التحتية لكل مرحلة في منهجيتنا.' },
               { title: 'سرعة التنفيذ الفائقة', desc: 'تتيح لنا هذه الدورة المؤتمتة التحرك بسرعات لم تكن تتخيلها الوكالات التقليدية.' },
             ].map((reason, i) => (
-              <div key={i} className="geometric-card p-10 bg-gray-dark/5 space-y-4">
-                <div className="w-1.5 h-1.5 bg-pulse-orange rounded-sm" />
-                <h3 className="text-xl font-bold text-snow">{reason.title}</h3>
-                <p className="text-gray-medium text-sm leading-relaxed font-medium">
-                  {reason.desc}
-                </p>
-              </div>
+              <Tilt key={i}>
+                <div className="geometric-card p-10 bg-gray-dark/5 space-y-4 h-full">
+                  <div className="w-1.5 h-1.5 bg-pulse-orange rounded-sm" />
+                  <h3 className="text-xl font-bold text-snow">{reason.title}</h3>
+                  <p className="text-gray-medium text-sm leading-relaxed font-medium">
+                    {reason.desc}
+                  </p>
+                </div>
+              </Tilt>
             ))}
           </div>
         </div>
@@ -251,7 +256,7 @@ export default function MethodologyPage() {
               </p>
               <div className="flex justify-center w-full">
                 <Magnetic className="w-full sm:w-auto">
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center">
                     احجز مكالمة استراتيجية الآن
                   </Link>
                 </Magnetic>
