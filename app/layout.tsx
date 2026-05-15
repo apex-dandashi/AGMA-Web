@@ -20,9 +20,9 @@ const ibmPlexSansArabic = IBM_Plex_Sans_Arabic({
 export const metadata: Metadata = {
   title: {
     template: '%s | AGMA',
-    default: 'AGMA | وكالة جيل الذكاء الاصطناعي',
+    default: 'AGMA.com.sa | وكالة جيل الذكاء الاصطناعي',
   },
-  description: 'وكالتك الكاملة في عصر الذكاء الاصطناعي. نحن وكالة سعودية Native-AI مبنية بالذكاء الاصطناعي من الداخل لخدمة العلامات الطموحة.',
+  description: 'وكالتك الكاملة في عصر الذكاء الاصطناعي. AGMA هي وكالة سعودية Native-AI مبنية بالذكاء الاصطناعي من الداخل لخدمة العلامات الطموحة والمستقبلية.',
   icons: {
     icon: '/favicon.png',
   },
