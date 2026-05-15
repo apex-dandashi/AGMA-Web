@@ -74,21 +74,25 @@ export default function CookieConsent() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    
-    try {
-      const savedConsent = localStorage.getItem('agma-cookie-consent');
-      if (!savedConsent) {
+    const timer = setTimeout(() => {
+      setMounted(true);
+      
+      try {
+        const savedConsent = localStorage.getItem('agma-cookie-consent');
+        if (!savedConsent) {
+          setShowBanner(true);
+        } else {
+          const parsed = JSON.parse(savedConsent);
+          setConsent(parsed);
+          loadTrackingScripts(parsed);
+        }
+      } catch (e) {
+        console.error('Error reading cookie consent:', e);
         setShowBanner(true);
-      } else {
-        const parsed = JSON.parse(savedConsent);
-        setConsent(parsed);
-        loadTrackingScripts(parsed);
       }
-    } catch (e) {
-      console.error('Error reading cookie consent:', e);
-      setShowBanner(true);
-    }
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleAcceptAll = () => {

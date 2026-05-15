@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${ibmPlexSansArabic.variable}`}>
+    <html lang="ar" dir="rtl" className={`${tajawal.variable} ${ibmPlexSansArabic.variable}`} suppressHydrationWarning>
       <body className="antialiased bg-[#0A0A0A] text-[#FAFAFA] font-body" suppressHydrationWarning>
         <ClientProviders>
           {children}

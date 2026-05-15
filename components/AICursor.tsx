@@ -18,11 +18,17 @@ const AICursor = () => {
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    setIsMounted(true);
-    const mobileCheck = window.matchMedia('(pointer: coarse)').matches;
-    setIsMobile(mobileCheck);
+    const timer = setTimeout(() => {
+      setIsMounted(true);
+      const mobileCheck = window.matchMedia('(pointer: coarse)').matches;
+      setIsMobile(mobileCheck);
+    }, 0);
     
-    if (mobileCheck) return;
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile || !isMounted) return;
 
     // Add class to hide native cursor once custom one is ready
     document.documentElement.classList.add('custom-cursor-active');
@@ -58,7 +64,7 @@ const AICursor = () => {
       window.removeEventListener('mousemove', moveMouse);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [isVisible, mouseX, mouseY]);
+  }, [isVisible, mouseX, mouseY, isMobile, isMounted]);
 
   if (!isMounted || isMobile) return null;
 
