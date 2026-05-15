@@ -7,39 +7,29 @@
   --color-gray-dark: #262626;
   --color-gray-medium: #737373;
   --color-gray-light: #D4D4D4;
-
-  --font-tajawal: var(--font-tajawal);
-  --font-ibm-plex: var(--font-ibm-plex);
 }
 
-/* Explicit CSS for core interface components as fallback */
+/* Base resets as global styles */
 html, body {
-  background-color: #0A0A0A !important;
-  color: #FAFAFA !important;
+  background-color: #0A0A0A;
+  color: #FAFAFA;
   margin: 0;
   padding: 0;
-  /* Lenis handles smooth scrolling, native smooth can conflict */
-  scroll-behavior: auto !important;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: var(--font-ibm-plex), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-ibm-plex), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
-}
-
-.custom-cursor-active,
-.custom-cursor-active * {
-  cursor: none !important;
 }
 
 @layer base {
   body {
-    @apply antialiased text-snow bg-pure-ink;
+    @apply antialiased bg-pure-ink text-snow;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-tajawal), sans-serif;
-    @apply tracking-tight;
   }
 }
 
@@ -101,10 +91,4 @@ body {
 
 .font-black-arabic {
   font-weight: 900;
-}
-
-@layer utilities {
-  .tracking-tighter-heading {
-    letter-spacing: -0.05em;
-  }
 }
