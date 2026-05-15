@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 export default function Magnetic({ children, className = '' }: { children: React.ReactNode, className?: string }) {
   const ref = useRef<HTMLDivElement>(null);

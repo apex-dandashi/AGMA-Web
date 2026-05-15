@@ -4,7 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import NeuralMesh from '@/components/NeuralMesh';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { 
   Zap, 
   Target, 
@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
-import { useScroll, useTransform } from 'motion/react';
+import { useScroll, useTransform } from 'framer-motion';
 
 export default function HomeClient() {
   const { scrollY } = useScroll();

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion, useSpring, useMotionValue } from 'motion/react';
+import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 const AICursor = () => {
   const [isMounted, setIsMounted] = useState(false);
