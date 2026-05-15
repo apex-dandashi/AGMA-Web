@@ -1,26 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import AICursor from './AICursor';
-import SmoothScroll from './SmoothScroll';
-import CookieConsent from './CookieConsent';
+import React from 'react';
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div className="bg-[#0A0A0A] min-h-screen text-[#FAFAFA]">{children}</div>;
-  }
-
   return (
-    <SmoothScroll>
-      <AICursor />
-      <CookieConsent />
+    <>
       {children}
-    </SmoothScroll>
+    </>
   );
 }

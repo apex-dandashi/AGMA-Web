@@ -18,7 +18,6 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
-import Magnetic from '@/components/ui/Magnetic';
 import { useScroll, useTransform } from 'framer-motion';
 
 export default function HomeClient() {
@@ -104,9 +103,9 @@ export default function HomeClient() {
               <span className="text-pulse-orange text-xs font-bold tracking-widest uppercase">من الرياض، قلب المملكة</span>
             </motion.div>
             <motion.h1 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
               className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-black font-black-arabic mb-8 leading-[1.2] text-snow max-w-4xl mx-auto tracking-normal py-4"
             >
               وكالتك الكاملة <br className="hidden sm:block" />
@@ -127,16 +126,12 @@ export default function HomeClient() {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6"
             >
-              <Magnetic className="w-full sm:w-auto">
-                <Link href="/contact" data-cursor-text="GROW" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center whitespace-nowrap">
-                  ابدأ رحلة النمو الآن
-                </Link>
-              </Magnetic>
-              <Magnetic className="w-full sm:w-auto">
-                <Link href="/services" data-cursor-text="EXPLORE" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
-                  استعرض خدماتنا
-                </Link>
-              </Magnetic>
+              <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 shadow-lg shadow-pulse-orange/20 block text-center whitespace-nowrap">
+                ابدأ رحلة النمو الآن
+              </Link>
+              <Link href="/services" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center whitespace-nowrap">
+                استعرض خدماتنا
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -145,25 +140,19 @@ export default function HomeClient() {
       {/* Stats / Proof Section */}
       <section className="py-20 border-y border-gray-dark bg-gray-dark/10">
         <div className="container mx-auto px-6">
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-x-reverse divide-gray-dark"
-          >
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-x divide-x-reverse divide-gray-dark">
             {[
               { label: 'النمو المتوسط للعملاء', val: '45%' },
               { label: 'ساعات العمل المؤتمتة', val: '12k+' },
               { label: 'حملات رقمية ناجحة', val: '500+' },
               { label: 'خبير في جيل الذكاء الاصطناعي', val: '40+' },
             ].map((stat, i) => (
-              <motion.div variants={itemVariants} key={i} className="space-y-2 px-4">
+              <div key={i} className="space-y-2 px-4">
                 <div className="text-3xl lg:text-4xl font-black text-pulse-orange font-heading">{stat.val}</div>
                 <div className="text-gray-medium text-sm font-medium">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+            </div>
         </div>
       </section>
 
@@ -427,11 +416,9 @@ export default function HomeClient() {
                 دعنا نحلل علامتك التجارية ونقدم لك أول استراتيجية نمو مدعومة بالذكاء الاصطناعي مجاناً.
               </p>
               <div className="flex justify-center w-full">
-                <Magnetic className="w-full sm:w-auto">
-                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
-                    احجز مكالمة استراتيجية الآن
-                  </Link>
-                </Magnetic>
+                <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 inline-block w-full sm:w-auto text-center whitespace-nowrap">
+                  احجز مكالمة استراتيجية الآن
+                </Link>
               </div>
             </div>
           </motion.div>
