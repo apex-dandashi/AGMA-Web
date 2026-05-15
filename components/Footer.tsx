@@ -17,8 +17,9 @@ const Footer = () => {
                 src="/logo.svg" 
                 alt="AGMA Logo" 
                 width={120} 
-                height={48} 
-                className="h-12 w-auto object-contain"
+                height={40} 
+                className="h-10 w-auto object-contain"
+                style={{ width: 'auto' }}
               />
             </Link>
             <p className="text-gray-medium text-sm leading-relaxed max-w-xs">
@@ -39,10 +40,10 @@ const Footer = () => {
           <div>
             <h4 className="text-snow font-bold mb-6">خدماتنا</h4>
             <ul className="space-y-4 text-sm text-gray-medium">
-              <li><Link href="/services#ai" className="hover:text-pulse-orange transition-colors">الذكاء الاصطناعي والأتمتة</Link></li>
-              <li><Link href="/services#performance" className="hover:text-pulse-orange transition-colors">التسويق الأدائي</Link></li>
-              <li><Link href="/services#seo" className="hover:text-pulse-orange transition-colors">السيو والمحتوى</Link></li>
-              <li><Link href="/services#branding" className="hover:text-pulse-orange transition-colors">الهوية والتصميم</Link></li>
+              <li><Link href="/services#ai-automation" className="hover:text-pulse-orange transition-colors">الذكاء الاصطناعي والأتمتة</Link></li>
+              <li><Link href="/services#performance-marketing" className="hover:text-pulse-orange transition-colors">التسويق الأدائي</Link></li>
+              <li><Link href="/services#seo-content" className="hover:text-pulse-orange transition-colors">السيو والمحتوى</Link></li>
+              <li><Link href="/services#branding-creative" className="hover:text-pulse-orange transition-colors">الهوية والتصميم</Link></li>
             </ul>
           </div>
 

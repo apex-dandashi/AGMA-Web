@@ -18,6 +18,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import Link from 'next/link';
+import Magnetic from '@/components/ui/Magnetic';
 
 export default function AboutPage() {
   const values = [
@@ -63,20 +64,24 @@ export default function AboutPage() {
             <div className="inline-block px-4 py-1 mb-6 border border-pulse-orange/30 rounded-full bg-pulse-orange/5">
               <span className="text-pulse-orange text-xs font-bold tracking-widest uppercase">الرياض، قلب المملكة</span>
             </div>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-snow max-w-4xl mx-auto">
-              من الرياض، وُلدت وكالة <br />
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1] text-snow max-w-4xl mx-auto px-4">
+              من الرياض، وُلدت وكالة <br className="hidden sm:block" />
               <span className="text-pulse-orange">جيل الذكاء الاصطناعي</span>.
             </h1>
-            <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            <p className="text-gray-medium text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium px-6">
               تأسست AGMA لتقود تحولاً جديداً في التسويق؛ حيث لا يكون الذكاء الاصطناعي أداة جانبية، بل بنية تشغيلية كاملة تصنع السرعة، الدقة، والنمو القابل للقياس.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/contact" className="btn-primary w-full sm:w-auto text-lg px-10 py-4">
-                احجز مكالمة استراتيجية
-              </Link>
-              <Link href="/methodology" className="btn-secondary w-full sm:w-auto text-lg px-10 py-4">
-                استكشف منهجيتنا
-              </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 px-6">
+              <Magnetic>
+                <Link href="/contact" className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+                  احجز مكالمة استراتيجية
+                </Link>
+              </Magnetic>
+              <Magnetic>
+                <Link href="/agma-method" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+                  استكشف منهجيتنا
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
         </div>
@@ -275,17 +280,21 @@ export default function AboutPage() {
         <div className="container mx-auto">
           <div className="border border-gray-dark p-12 lg:p-20 text-center relative overflow-hidden bg-gray-dark/5">
             <div className="grid-pattern opacity-[0.03]" />
-            <div className="relative z-10">
-              <h2 className="text-4xl lg:text-6xl font-bold mb-8 text-snow leading-tight">
+            <div className="relative z-10 px-4">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 text-snow leading-tight">
                 هل تبحث عن وكالة تفكر كشريك... <br />
                 <span className="text-pulse-orange">وتتحرك بسرعة الذكاء الاصطناعي؟</span>
               </h2>
-              <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
+              <p className="text-gray-medium text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
                 دعنا نبدأ من فهم علامتك، ثم نبني منظومة نمو تناسب طموحك وجنون تطلعاتك.
               </p>
-              <Link href="/contact" className="btn-primary text-xl px-12 py-5">
-                احجز مكالمة استراتيجية الآن
-              </Link>
+              <div className="flex justify-center w-full">
+                <Magnetic>
+                  <Link href="/contact" className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 w-full sm:w-auto inline-block text-center shadow-2xl shadow-pulse-orange/20">
+                    احجز مكالمة استراتيجية الآن
+                  </Link>
+                </Magnetic>
+              </div>
             </div>
           </div>
         </div>

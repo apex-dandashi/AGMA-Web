@@ -25,6 +25,7 @@ import {
   Instagram
 } from 'lucide-react';
 import Link from 'next/link';
+import Magnetic from '@/components/ui/Magnetic';
 
 const serviceOptions = [
   'الذكاء الاصطناعي والأتمتة',
@@ -81,20 +82,24 @@ export default function ContactClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 leading-[1.1] text-snow max-w-4xl mx-auto">
-              لنبدأ بناء منظومة <br />
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1] text-snow max-w-4xl mx-auto px-4">
+              لنبدأ بناء منظومة <br className="hidden sm:block" />
               <span className="text-pulse-orange">نمو أذكى.</span>
             </h1>
-            <p className="text-gray-medium text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+            <p className="text-gray-medium text-base sm:text-lg lg:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium px-6">
               سواء كنت تحتاج حملة، موقع، هوية، أتمتة، أو خطة تسويق كاملة — أخبرنا أين تقف، وسنساعدك على تحديد الخطوة التالية.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary w-full sm:w-auto text-lg px-10 py-4">
-                اطلب عرض سعر
-              </button>
-              <Link href="https://calendly.com" target="_blank" className="btn-secondary w-full sm:w-auto text-lg px-10 py-4">
-                احجز مكالمة استراتيجية
-              </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-6">
+              <Magnetic>
+                <button onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+                  اطلب عرض سعر
+                </button>
+              </Magnetic>
+              <Magnetic>
+                <Link href="https://calendly.com" target="_blank" className="btn-secondary w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4 block text-center">
+                  احجز مكالمة استراتيجية
+                </Link>
+              </Magnetic>
             </div>
           </motion.div>
         </div>
@@ -107,7 +112,21 @@ export default function ContactClient() {
             
             {/* Left Column: Form */}
             <div className="lg:col-span-7">
-              <div className="geometric-card bg-gray-dark/10 p-8 lg:p-12 relative overflow-hidden">
+              <motion.div 
+                initial="initial"
+                whileHover="hover"
+                className="geometric-card bg-gray-dark/10 p-8 lg:p-12 relative overflow-hidden"
+              >
+                {/* Digital Scan Line Effect for Form Card */}
+                <motion.div 
+                  variants={{
+                    initial: { top: "-5%", opacity: 0 },
+                    hover: { top: "105%", opacity: 1 }
+                  }}
+                  transition={{ duration: 1.2, ease: "linear" }}
+                  className="absolute left-0 right-0 h-[3px] bg-pulse-orange shadow-[0_0_20px_rgba(244,77,43,1)] z-20 pointer-events-none"
+                />
+
                 <div className="grid-pattern opacity-[0.03]" />
                 
                 {formState === 'success' ? (
@@ -194,20 +213,22 @@ export default function ContactClient() {
                       <textarea rows={4} className="contact-input resize-none" placeholder="أخبرنا باختصار عن مشروعك أو التحدي الذي تواجهه..."></textarea>
                     </div>
 
-                    <button 
-                      type="submit" 
-                      disabled={formState === 'submitting'}
-                      className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50"
-                    >
-                      {formState === 'submitting' ? 'جاري الإرسال...' : (
-                        <>
-                          أرسل طلبك <Send size={20} className="-rotate-45" />
-                        </>
-                      )}
-                    </button>
+                    <Magnetic>
+                      <button 
+                        type="submit" 
+                        disabled={formState === 'submitting'}
+                        className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50"
+                      >
+                        {formState === 'submitting' ? 'جاري الإرسال...' : (
+                          <>
+                            أرسل طلبك <Send size={20} className="-rotate-45" />
+                          </>
+                        )}
+                      </button>
+                    </Magnetic>
                   </form>
                 )}
-              </div>
+              </motion.div>
             </div>
 
             {/* Right Column: Info & Steps */}
@@ -301,21 +322,25 @@ export default function ContactClient() {
       <section className="py-24 px-6 border-t border-gray-dark">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto text-center space-y-10">
-            <h2 className="text-4xl lg:text-6xl font-bold text-snow leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-snow leading-tight mb-8">
               كل نمو واضح يبدأ <br />
               <span className="text-pulse-orange">بسؤال صحيح.</span>
             </h2>
-            <p className="text-gray-medium text-lg lg:text-xl font-medium leading-relaxed max-w-2xl mx-auto">
+            <p className="text-gray-medium text-base sm:text-lg lg:text-xl font-medium leading-relaxed max-w-2xl mx-auto mb-10">
               أرسل لنا ما تعمل عليه، وسنساعدك على تحويله إلى خطة قابلة للتنفيذ.
             </p>
-            <button 
-              onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-primary text-xl px-12 py-5 shadow-2xl shadow-pulse-orange/20"
-            >
-              أرسل طلبك الآن
-            </button>
+            <div className="flex justify-center w-full">
+              <Magnetic>
+                <button 
+                  onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="btn-primary text-lg sm:text-xl px-10 sm:px-12 py-4 sm:py-5 shadow-2xl shadow-pulse-orange/20 w-full sm:w-auto text-center"
+                >
+                  أرسل طلبك الآن
+                </button>
+              </Magnetic>
+            </div>
             
-            <div className="pt-12 flex justify-center gap-10 text-xs text-gray-medium font-bold uppercase tracking-widest border-t border-gray-dark">
+            <div className="pt-12 flex flex-wrap justify-center gap-6 sm:gap-10 text-[10px] sm:text-xs text-gray-medium font-bold uppercase tracking-widest border-t border-gray-dark px-4">
               <Link href="/services" className="hover:text-snow">خارطة الخدمات</Link>
               <Link href="/pricing" className="hover:text-snow">فلسفة التسعير</Link>
               <Link href="/process" className="hover:text-snow">نموذج العمل</Link>

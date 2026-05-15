@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Tajawal, IBM_Plex_Sans_Arabic } from 'next/font/google';
 import './globals.css';
+import AICursor from '@/components/AICursor';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -33,7 +35,10 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${tajawal.variable} ${ibmPlexSansArabic.variable}`}>
       <body className="antialiased bg-[#0A0A0A] text-[#FAFAFA] font-body" suppressHydrationWarning>
-        {children}
+        <SmoothScroll>
+          <AICursor />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
