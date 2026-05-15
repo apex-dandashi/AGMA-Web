@@ -9,10 +9,10 @@ export default function ClientProviders({ children }: { children: React.ReactNod
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const handle = requestAnimationFrame(() => {
       setIsMounted(true);
-    }, 0);
-    return () => clearTimeout(timer);
+    });
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   if (!isMounted) {

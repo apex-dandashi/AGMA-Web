@@ -67,7 +67,7 @@ export default function HomeClient() {
   };
 
   return (
-    <main className="min-h-screen relative overflow-hidden">
+    <main className="min-h-screen relative overflow-hidden" suppressHydrationWarning>
       <Header />
 
       {/* Hero Section */}
@@ -449,7 +449,7 @@ export default function HomeClient() {
             "@type": "AdvertisingAgency",
             "name": "AGMA | وكالة جيل الذكاء الاصطناعي",
             "description": "وكالة تسويق سعودية Native-AI متخصصة في الأتمتة والذكاء الاصطناعي والنمو الاستراتيجي.",
-            "url": "https://agma.sa",
+            "url": "https://agma.com.sa",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "الرياض",

@@ -74,7 +74,7 @@ export default function CookieConsent() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const handle = requestAnimationFrame(() => {
       setMounted(true);
       
       try {
@@ -90,9 +90,8 @@ export default function CookieConsent() {
         console.error('Error reading cookie consent:', e);
         setShowBanner(true);
       }
-    }, 0);
-
-    return () => clearTimeout(timer);
+    });
+    return () => cancelAnimationFrame(handle);
   }, []);
 
   const handleAcceptAll = () => {
