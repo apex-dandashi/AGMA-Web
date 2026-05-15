@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../app/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+@source "../lib/**/*.{ts,tsx}";
 
 @theme {
   --color-pulse-orange: #F44D2B;
@@ -15,8 +18,14 @@
 }
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
   body {
-    @apply font-body bg-pure-ink text-snow antialiased min-h-screen;
+    background-color: #0A0A0A;
+    color: #FAFAFA;
+    @apply font-body antialiased min-h-screen;
     background-image: 
       radial-gradient(circle at 100% 0%, rgba(244, 77, 43, 0.08) 0%, transparent 40%), 
       radial-gradient(circle at 0% 100%, rgba(14, 21, 48, 0.4) 0%, transparent 50%);
