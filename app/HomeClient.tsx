@@ -67,7 +67,7 @@ export default function HomeClient() {
   };
 
   return (
-    <main className="min-h-screen relative overflow-hidden" suppressHydrationWarning>
+    <main className="min-h-screen relative" suppressHydrationWarning>
       <Header />
 
       {/* Hero Section */}

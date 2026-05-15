@@ -34,28 +34,23 @@ const AICursor = () => {
       mouseY.set(e.clientY);
       if (!isVisible) {
         setIsVisible(true);
-        // Only hide native cursor once we are moving and visible
         document.documentElement.classList.add('custom-cursor-active');
       }
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      try {
-        const target = e.target as HTMLElement;
-        if (!target) return;
+      const target = e.target as HTMLElement;
+      if (!target) return;
 
-        const isClickable = target.closest('a, button, [data-cursor="hover"], .btn-primary, .btn-secondary, .btn-outline');
-        
-        if (isClickable) {
-          setIsHovering(true);
-          const text = isClickable.getAttribute('data-cursor-text');
-          setCursorText(text || '');
-        } else {
-          setIsHovering(false);
-          setCursorText('');
-        }
-      } catch (err) {
-        // Silently fail for non-element targets
+      const isClickable = target.closest('a, button, [data-cursor="hover"], .btn-primary, .btn-secondary, .btn-outline');
+      
+      if (isClickable) {
+        setIsHovering(true);
+        const text = isClickable.getAttribute('data-cursor-text');
+        setCursorText(text || '');
+      } else {
+        setIsHovering(false);
+        setCursorText('');
       }
     };
 
@@ -67,7 +62,7 @@ const AICursor = () => {
       window.removeEventListener('mousemove', moveMouse);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [isMobile, isMounted, isVisible, mouseX, mouseY]);
+  }, [isMobile, isMounted, mouseX, mouseY]);
 
   if (!isMounted || isMobile) return null;
 
