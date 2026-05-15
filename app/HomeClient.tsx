@@ -20,6 +20,7 @@ import {
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
 import Tilt from '@/components/ui/Tilt';
+import ScrollFocus from '@/components/ui/ScrollFocus';
 import { useScroll, useTransform } from 'framer-motion';
 
 export default function HomeClient() {
@@ -198,89 +199,97 @@ export default function HomeClient() {
             viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-4"
           >
-            <Tilt className="md:col-span-2">
-              <motion.div 
-                variants={itemVariants}
-                data-cursor-text="ANALYZE"
-                className="w-full min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
-              >
-                <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">01</div>
-                <div className="relative z-10">
-                  <h3 className="text-3xl font-bold mb-4 text-snow">
-                    {agmaMethod[0].name} — {agmaMethod[0].nameAr}
-                  </h3>
-                  <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
-                    {agmaMethod[0].desc}
-                  </p>
-                </div>
-                {/* Decorative data scan line */}
-                <div className="absolute top-0 right-0 w-32 h-full bg-pulse-orange/5 blur-3xl -skew-x-12 animate-pulse" />
-              </motion.div>
-            </Tilt>
+            <ScrollFocus className="md:col-span-2">
+              <Tilt>
+                <motion.div 
+                  variants={itemVariants}
+                  data-cursor-text="ANALYZE"
+                  className="w-full min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
+                >
+                  <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">01</div>
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-bold mb-4 text-snow">
+                      {agmaMethod[0].name} — {agmaMethod[0].nameAr}
+                    </h3>
+                    <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
+                      {agmaMethod[0].desc}
+                    </p>
+                  </div>
+                  {/* Decorative data scan line */}
+                  <div className="absolute top-0 right-0 w-32 h-full bg-pulse-orange/5 blur-3xl -skew-x-12 animate-pulse" />
+                </motion.div>
+              </Tilt>
+            </ScrollFocus>
 
             {/* Step 02: Generate */}
-            <Tilt className="md:col-span-1">
-              <motion.div 
-                variants={itemVariants}
-                data-cursor-text="GENERATE"
-                className="w-full min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
-              >
-                <div className="text-4xl font-black text-pulse-orange/10 font-mono">02</div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3 text-snow">
-                    {agmaMethod[1].nameAr}
-                  </h3>
-                  <p className="text-gray-medium text-xs leading-relaxed">
-                    {agmaMethod[1].desc}
-                  </p>
-                </div>
-              </motion.div>
-            </Tilt>
+            <ScrollFocus className="md:col-span-1">
+              <Tilt>
+                <motion.div 
+                  variants={itemVariants}
+                  data-cursor-text="GENERATE"
+                  className="w-full min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
+                >
+                  <div className="text-4xl font-black text-pulse-orange/10 font-mono">02</div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-3 text-snow">
+                      {agmaMethod[1].nameAr}
+                    </h3>
+                    <p className="text-gray-medium text-xs leading-relaxed">
+                      {agmaMethod[1].desc}
+                    </p>
+                  </div>
+                </motion.div>
+              </Tilt>
+            </ScrollFocus>
 
             {/* Step 03: Market */}
-            <Tilt className="md:col-span-1">
-              <motion.div 
-                variants={itemVariants}
-                data-cursor-text="MARKET"
-                className="w-full min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
-              >
-                <div className="text-4xl font-black text-pulse-orange/10 font-mono">03</div>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3 text-snow">
-                    {agmaMethod[2].nameAr}
-                  </h3>
-                  <p className="text-gray-medium text-xs leading-relaxed">
-                    {agmaMethod[2].desc}
-                  </p>
-                </div>
-              </motion.div>
-            </Tilt>
+            <ScrollFocus className="md:col-span-1">
+              <Tilt>
+                <motion.div 
+                  variants={itemVariants}
+                  data-cursor-text="MARKET"
+                  className="w-full min-h-[200px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark flex flex-col justify-between p-8"
+                >
+                  <div className="text-4xl font-black text-pulse-orange/10 font-mono">03</div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-3 text-snow">
+                      {agmaMethod[2].nameAr}
+                    </h3>
+                    <p className="text-gray-medium text-xs leading-relaxed">
+                      {agmaMethod[2].desc}
+                    </p>
+                  </div>
+                </motion.div>
+              </Tilt>
+            </ScrollFocus>
 
             {/* Step 04: Adapt */}
-            <Tilt className="md:col-span-2">
-              <motion.div 
-                variants={itemVariants}
-                data-cursor-text="ADAPT"
-                className="w-full min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
-              >
-                <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">04</div>
-                <div className="relative z-10">
-                  <h3 className="text-3xl font-bold mb-4 text-snow">
-                    {agmaMethod[3].name} — {agmaMethod[3].nameAr}
-                  </h3>
-                  <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
-                    {agmaMethod[3].desc}
-                  </p>
-                </div>
-                {/* Terminal-like text decoration */}
-                <div className="absolute top-8 right-8 font-mono text-[8px] text-pulse-orange/20 text-right leading-tight hidden lg:block">
-                  OPTIMIZING_LOOP...<br />
-                  DATA_FEED: ACTIVE<br />
-                  ROI_TRACKING: TRUE<br />
-                  ADAPTIVE_ENGINE: v4.0.2
-                </div>
-              </motion.div>
-            </Tilt>
+            <ScrollFocus className="md:col-span-2">
+              <Tilt>
+                <motion.div 
+                  variants={itemVariants}
+                  data-cursor-text="ADAPT"
+                  className="w-full min-h-[250px] md:h-[300px] geometric-card group bg-gray-dark/10 border-gray-dark relative overflow-hidden flex flex-col justify-end p-8"
+                >
+                  <div className="absolute top-8 left-8 text-6xl font-black text-pulse-orange/10 font-mono group-hover:text-pulse-orange/20 transition-colors">04</div>
+                  <div className="relative z-10">
+                    <h3 className="text-3xl font-bold mb-4 text-snow">
+                      {agmaMethod[3].name} — {agmaMethod[3].nameAr}
+                    </h3>
+                    <p className="text-gray-medium text-sm leading-relaxed font-medium max-w-xl">
+                      {agmaMethod[3].desc}
+                    </p>
+                  </div>
+                  {/* Terminal-like text decoration */}
+                  <div className="absolute top-8 right-8 font-mono text-[8px] text-pulse-orange/20 text-right leading-tight hidden lg:block">
+                    OPTIMIZING_LOOP...<br />
+                    DATA_FEED: ACTIVE<br />
+                    ROI_TRACKING: TRUE<br />
+                    ADAPTIVE_ENGINE: v4.0.2
+                  </div>
+                </motion.div>
+              </Tilt>
+            </ScrollFocus>
           </motion.div>
         </div>
       </section>
@@ -317,12 +326,13 @@ export default function HomeClient() {
                 whileHover="hover"
                 className="relative h-full"
               >
-                <Tilt className="h-full">
-                  <Link 
-                    href={`/services#${service.id || ''}`} 
-                    data-cursor-text="VIEW"
-                    className="group block h-full p-8 rounded-3xl border border-snow/5 bg-gray-dark/30 hover:bg-pulse-orange/5 hover:border-pulse-orange/30 transition-all duration-500 relative overflow-hidden"
-                  >
+                <ScrollFocus>
+                  <Tilt className="h-full">
+                    <Link 
+                      href={`/services#${service.id || ''}`} 
+                      data-cursor-text="VIEW"
+                      className="group block h-full p-8 rounded-3xl border border-snow/5 bg-gray-dark/30 hover:bg-pulse-orange/5 hover:border-pulse-orange/30 transition-all duration-500 relative overflow-hidden"
+                    >
                     {/* Digital Scan Line Effect */}
                     <div className="absolute inset-0 z-0 pointer-events-none">
                       <motion.div 
@@ -357,7 +367,8 @@ export default function HomeClient() {
                     </div>
                   </Link>
                 </Tilt>
-              </motion.div>
+              </ScrollFocus>
+            </motion.div>
             ))}
           </motion.div>
         </div>

@@ -28,6 +28,7 @@ import {
 import Link from 'next/link';
 import Magnetic from '@/components/ui/Magnetic';
 import Tilt from '@/components/ui/Tilt';
+import ScrollFocus from '@/components/ui/ScrollFocus';
 
 export default function MethodologyPage() {
   const phases = [
@@ -177,12 +178,14 @@ export default function MethodologyPage() {
 
                 <div className="grid grid-cols-2 gap-4">
                   {phase.items.map((item, idx) => (
-                    <Tilt key={idx}>
-                      <div className="geometric-card bg-gray-dark/5 p-4 flex items-center gap-3 group h-full">
-                        <item.icon className="text-pulse-orange w-5 h-5 group-hover:scale-110 transition-transform" />
-                        <span className="text-snow font-bold text-xs">{item.label}</span>
-                      </div>
-                    </Tilt>
+                    <ScrollFocus key={idx}>
+                      <Tilt className="h-full">
+                        <div className="geometric-card bg-gray-dark/5 p-4 flex items-center gap-3 group h-full">
+                          <item.icon className="text-pulse-orange w-5 h-5 group-hover:scale-110 transition-transform" />
+                          <span className="text-snow font-bold text-xs">{item.label}</span>
+                        </div>
+                      </Tilt>
+                    </ScrollFocus>
                   ))}
                 </div>
               </div>
@@ -227,15 +230,17 @@ export default function MethodologyPage() {
               { title: 'الذكاء الاصطناعي كنظام', desc: 'AI ليس مجرد أداة إضافية، بل هو جزء من البنية التحتية لكل مرحلة في منهجيتنا.' },
               { title: 'سرعة التنفيذ الفائقة', desc: 'تتيح لنا هذه الدورة المؤتمتة التحرك بسرعات لم تكن تتخيلها الوكالات التقليدية.' },
             ].map((reason, i) => (
-              <Tilt key={i}>
-                <div className="geometric-card p-10 bg-gray-dark/5 space-y-4 h-full">
-                  <div className="w-1.5 h-1.5 bg-pulse-orange rounded-sm" />
-                  <h3 className="text-xl font-bold text-snow">{reason.title}</h3>
-                  <p className="text-gray-medium text-sm leading-relaxed font-medium">
-                    {reason.desc}
-                  </p>
-                </div>
-              </Tilt>
+              <ScrollFocus key={i}>
+                <Tilt className="h-full">
+                  <div className="geometric-card p-10 bg-gray-dark/5 space-y-4 h-full">
+                    <div className="w-1.5 h-1.5 bg-pulse-orange rounded-sm" />
+                    <h3 className="text-xl font-bold text-snow">{reason.title}</h3>
+                    <p className="text-gray-medium text-sm leading-relaxed font-medium">
+                      {reason.desc}
+                    </p>
+                  </div>
+                </Tilt>
+              </ScrollFocus>
             ))}
           </div>
         </div>
