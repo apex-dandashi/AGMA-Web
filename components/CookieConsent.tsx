@@ -68,15 +68,14 @@ const loadTrackingScripts = (consent: ConsentSettings) => {
 };
 
 export default function CookieConsent() {
-  const [isMounted, setIsMounted] = useState(false);
   const [showBanner, setShowBanner] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [consent, setConsent] = useState<ConsentSettings>(DEFAULT_CONSENT);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    setMounted(true);
     
-    // Check localStorage safely
     try {
       const savedConsent = localStorage.getItem('agma-cookie-consent');
       if (!savedConsent) {
@@ -84,14 +83,11 @@ export default function CookieConsent() {
       } else {
         const parsed = JSON.parse(savedConsent);
         setConsent(parsed);
-        // Only load scripts if we're definitely on the client
-        if (typeof window !== 'undefined') {
-          loadTrackingScripts(parsed);
-        }
+        loadTrackingScripts(parsed);
       }
     } catch (e) {
       console.error('Error reading cookie consent:', e);
-      setShowBanner(true); // Fallback to showing banner if error
+      setShowBanner(true);
     }
   }, []);
 
@@ -115,7 +111,7 @@ export default function CookieConsent() {
     setShowModal(false);
   };
 
-  if (!isMounted) return null;
+  if (!mounted) return null;
   if (!showBanner && !showModal) return null;
 
   return (

@@ -8,8 +8,8 @@ export default function Magnetic({ children, className = '' }: { children: React
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    // Disable on touch devices (simplified check)
-    if (window.matchMedia('(pointer: coarse)').matches) return;
+    // Check pointer type for mobile/touch
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
     
     const { clientX, clientY } = e;
     if (!ref.current) return;
