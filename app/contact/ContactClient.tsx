@@ -357,37 +357,6 @@ export default function ContactClient() {
       </section>
 
       <Footer />
-
-      {/* Suggested Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ContactPage",
-            "name": "تواصل مع AGMA | وكالة جيل الذكاء الاصطناعي",
-            "description": "لنبدأ بناء منظومة نمو أذكى لشركتك. تواصل معنا لطلب عرض سعر أو حجز مكالمة استراتيجية.",
-            "url": "https://agma.sa/contact",
-            "mainEntity": {
-              "@type": "AdvertisingAgency",
-              "name": "AGMA",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "الرياض",
-                "addressCountry": "SA"
-              },
-              "email": "hello@agma.sa",
-              "openingHours": "Mo-Th 09:00-17:00, Su 09:00-17:00"
-            }
-          }),
-        }}
-      />
-      
-      <style jsx>{`
-        .contact-input {
-          @apply w-full bg-pure-ink border border-gray-dark px-4 py-3 text-snow placeholder:text-gray-dark focus:border-pulse-orange outline-none transition-colors font-medium;
-        }
-      `}</style>
     </main>
   );
 }

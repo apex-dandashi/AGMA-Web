@@ -262,37 +262,6 @@ export default function MethodologyPage() {
       </section>
 
       <Footer />
-
-      {/* Suggested Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "منهجية AGMA Method™ | وكالة جيل الذكاء الاصطناعي",
-            "description": "شرح منهجية AGMA الملكية: تحليل، توليد، تسويق، وتطوير. نظامنا المصمم لتحقيق النمو في عصر الذكاء الاصطناعي.",
-            "url": "https://agma.sa/agma-method"
-          }),
-        }}
-      />
-
-      <style jsx>{`
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes reverse-spin {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-        .animate-reverse-spin {
-          animation: reverse-spin 15s linear infinite;
-        }
-      `}</style>
     </main>
   );
 }

@@ -63,6 +63,10 @@
   .font-black-arabic {
     font-weight: 900;
   }
+
+  .contact-input {
+    @apply w-full bg-pure-ink border border-gray-dark px-4 py-3 text-snow placeholder:text-gray-dark focus:border-pulse-orange outline-none transition-colors font-medium;
+  }
 }
 
 @keyframes text-shimmer {
