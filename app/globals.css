@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@source "../app/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+@source "../lib/**/*.{ts,tsx}";
 
 @theme {
   --color-pulse-orange: #F44D2B;
@@ -78,4 +81,11 @@ body {
   pointer-events: none;
   background-image: linear-gradient(#FAFAFA 1px, transparent 1px), linear-gradient(90deg, #FAFAFA 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+.orange-glow {
+  position: absolute;
+  background: radial-gradient(circle, rgba(244, 77, 43, 0.4) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
 }
