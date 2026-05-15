@@ -340,7 +340,7 @@ export default function ServicesClient() {
             "@type": "CollectionPage",
             "name": "خدمات AGMA | منظومة النمو بالذكاء الاصطناعي",
             "description": "32 خدمة تسويقية وتقنية مدعومة بالذكاء الاصطناعي تشمل الأتمتة، الإعلانات، السيو، المحتوى، الهوية، والويب.",
-            "url": "https://agma.sa/services",
+            "url": "https://agma.com.sa/services",
             "hasPart": servicesData.map(s => ({
               "@type": "Service",
               "name": s.title,

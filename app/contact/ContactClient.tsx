@@ -268,7 +268,7 @@ export default function ContactClient() {
                     </div>
                     <div>
                       <p className="text-snow font-bold">البريد الإلكتروني</p>
-                      <p className="text-gray-medium text-sm">hello@agma.sa</p>
+                      <p className="text-gray-medium text-sm">hello@agma.com.sa</p>
                     </div>
                   </div>
                   <div className="flex gap-4">

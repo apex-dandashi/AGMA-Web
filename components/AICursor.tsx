@@ -18,12 +18,9 @@ const AICursor = () => {
   const cursorY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const handle = requestAnimationFrame(() => {
-      setIsMounted(true);
-      const mobileCheck = window.matchMedia('(pointer: coarse)').matches;
-      setIsMobile(mobileCheck);
-    });
-    return () => cancelAnimationFrame(handle);
+    setIsMounted(true);
+    const mobileCheck = window.matchMedia('(pointer: coarse)').matches;
+    setIsMobile(mobileCheck);
   }, []);
 
   useEffect(() => {
