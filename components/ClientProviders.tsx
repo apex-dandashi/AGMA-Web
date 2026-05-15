@@ -9,19 +9,8 @@ export default function ClientProviders({ children }: { children: React.ReactNod
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const handle = requestAnimationFrame(() => {
-      setMounted(true);
-    });
-    return () => cancelAnimationFrame(handle);
+    setMounted(true);
   }, []);
-
-  if (!mounted) {
-    return (
-      <div style={{ opacity: 0 }}>
-        {children}
-      </div>
-    );
-  }
 
   return (
     <SmoothScroll>
