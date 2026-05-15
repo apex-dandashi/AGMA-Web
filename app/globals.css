@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@source "../app/**/*.{ts,tsx}";
-@source "../components/**/*.{ts,tsx}";
-@source "../lib/**/*.{ts,tsx}";
 
 @theme {
   --color-pulse-orange: #F44D2B;
@@ -10,121 +7,75 @@
   --color-gray-dark: #262626;
   --color-gray-medium: #737373;
   --color-gray-light: #D4D4D4;
-  --color-warm-cream: #F5EFE7;
-  --color-deep-navy: #0E1530;
 
-  --font-heading: var(--font-tajawal), sans-serif;
-  --font-body: var(--font-ibm-plex), sans-serif;
+  --font-tajawal: var(--font-tajawal);
+  --font-ibm-plex: var(--font-ibm-plex);
+}
+
+/* Explicit CSS for core interface components as fallback */
+html, body {
+  background-color: #0A0A0A !important;
+  color: #FAFAFA !important;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-ibm-plex), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
 }
 
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
-  
   body {
-    background-color: #0A0A0A;
-    color: #FAFAFA;
-    @apply font-body antialiased min-h-screen;
-    background-image: 
-      radial-gradient(circle at 100% 0%, rgba(244, 77, 43, 0.08) 0%, transparent 40%), 
-      radial-gradient(circle at 0% 100%, rgba(14, 21, 48, 0.4) 0%, transparent 50%);
-  }
-
-  .custom-cursor-active,
-  .custom-cursor-active body,
-  .custom-cursor-active a,
-  .custom-cursor-active button,
-  .custom-cursor-active input,
-  .custom-cursor-active textarea,
-  .custom-cursor-active [role="button"] {
-    cursor: none !important;
+    @apply antialiased text-snow bg-pure-ink;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight;
+    font-family: var(--font-tajawal), sans-serif;
+    @apply tracking-tight;
   }
-
-  .text-glow {
-    text-shadow: 0 0 20px rgba(244, 77, 43, 0.4);
-  }
-
-  .text-stroke {
-    -webkit-text-stroke: 1px rgba(250, 250, 250, 0.1);
-    color: transparent;
-  }
-
-  .text-gradient {
-    background-image: linear-gradient(to right, var(--color-snow), var(--color-pulse-orange), var(--color-snow));
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    background-size: 200% auto;
-    animation: text-shimmer 8s linear infinite;
-  }
-}
-
-@layer utilities {
-  .tracking-tighter-heading {
-    letter-spacing: -0.02em;
-  }
-  
-  .font-black-arabic {
-    font-weight: 900;
-  }
-
-  .contact-input {
-    @apply w-full bg-pure-ink border border-gray-dark px-4 py-3 text-snow placeholder:text-gray-dark focus:border-pulse-orange outline-none transition-colors font-medium;
-  }
-}
-
-@keyframes text-shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
 }
 
 @layer components {
   .btn-primary {
     @apply bg-pulse-orange text-snow px-6 py-3 rounded-sm font-bold transition-all duration-300 hover:opacity-90 active:scale-95 shadow-lg shadow-pulse-orange/20;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .btn-outline {
     @apply bg-transparent border border-pulse-orange text-pulse-orange px-6 py-3 rounded-full font-bold transition-all duration-300 hover:bg-pulse-orange hover:text-white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn-secondary {
     @apply bg-gray-dark text-snow border border-gray-medium/30 px-6 py-3 rounded-sm font-bold transition-all hover:bg-gray-dark/80;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .geometric-card {
     @apply bg-gray-dark/20 border border-gray-dark p-6 transition-all duration-300 hover:border-pulse-orange/50;
   }
-  
-  .grid-pattern {
-    @apply absolute inset-0 opacity-[0.03] pointer-events-none;
-    background-image: linear-gradient(#FAFAFA 1px, transparent 1px), linear-gradient(90deg, #FAFAFA 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
-  .orange-glow {
-    @apply absolute -z-10 blur-[100px] opacity-20 pointer-events-none bg-pulse-orange rounded-full;
-  }
 }
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.text-gradient {
+  background-image: linear-gradient(to right, #FAFAFA, #F44D2B, #FAFAFA);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% auto;
 }
 
-@keyframes reverse-spin {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-reverse-spin {
-  animation: reverse-spin 15s linear infinite;
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: linear-gradient(#FAFAFA 1px, transparent 1px), linear-gradient(90deg, #FAFAFA 1px, transparent 1px);
+  background-size: 40px 40px;
 }

@@ -12,6 +12,10 @@ export default function ClientProviders({ children }: { children: React.ReactNod
     setMounted(true);
   }, []);
 
+  if (!mounted) {
+    return <div className="bg-[#0A0A0A] min-h-screen text-[#FAFAFA]">{children}</div>;
+  }
+
   return (
     <SmoothScroll>
       <AICursor />
