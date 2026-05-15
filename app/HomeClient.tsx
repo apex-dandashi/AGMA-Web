@@ -458,7 +458,7 @@ export default function HomeClient() {
             "contactPoint": {
               "@type": "ContactPoint",
               "contactType": "sales",
-              "email": "hello@agma.sa"
+              "email": "hello@agma.com.sa"
             }
           }),
         }}

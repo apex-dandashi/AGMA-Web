@@ -30,7 +30,8 @@ const AICursor = () => {
     if (isMobile || !isMounted) return;
 
     // Add class to hide native cursor once custom one is ready
-    document.documentElement.classList.add('custom-cursor-active');
+    const html = document.documentElement;
+    html.classList.add('custom-cursor-active');
 
     const moveMouse = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -39,31 +40,38 @@ const AICursor = () => {
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      // Use any to avoid issues with SVG targets or other non-HTMLElements
-      const target = e.target as any;
-      if (!target || typeof target.closest !== 'function') return;
+      try {
+        const target = e.target as Element;
+        if (!target || typeof target.closest !== 'function') {
+          setIsHovering(false);
+          setCursorText('');
+          return;
+        }
 
-      const isClickable = target.closest('a, button, [data-cursor="hover"]');
-      
-      if (isClickable) {
-        setIsHovering(true);
-        const text = isClickable.getAttribute('data-cursor-text');
-        setCursorText(text || '');
-      } else {
-        setIsHovering(false);
-        setCursorText('');
+        const isClickable = target.closest('a, button, [data-cursor="hover"]');
+        
+        if (isClickable) {
+          setIsHovering(true);
+          const text = isClickable.getAttribute('data-cursor-text');
+          setCursorText(text || '');
+        } else {
+          setIsHovering(false);
+          setCursorText('');
+        }
+      } catch (err) {
+        console.error('AICursor error:', err);
       }
     };
 
-    window.addEventListener('mousemove', moveMouse);
-    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mousemove', moveMouse, { passive: true });
+    window.addEventListener('mouseover', handleMouseOver, { passive: true });
 
     return () => {
-      document.documentElement.classList.remove('custom-cursor-active');
+      html.classList.remove('custom-cursor-active');
       window.removeEventListener('mousemove', moveMouse);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [isVisible, mouseX, mouseY, isMobile, isMounted]);
+  }, [isMobile, isMounted, isVisible, mouseX, mouseY]);
 
   if (!isMounted || isMobile) return null;
 

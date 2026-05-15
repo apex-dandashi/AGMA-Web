@@ -62,64 +62,54 @@ const NeuralMesh = () => {
       // Only run if we have particles
       if (particles.length === 0 && canvas.width > 0) initParticles();
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        
-        // Update position
-        p.x += p.vx;
-        p.y += p.vy;
+      if (particles.length > 0) {
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          
+          // Update position
+          p.x += p.vx;
+          p.y += p.vy;
 
-        // Bounce off walls
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          // Bounce off walls
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
 
-        // Mouse interaction (gentle attraction)
-        const dxMouse = mouseX - p.x;
-        const dyMouse = mouseY - p.y;
-        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-        
-        if (distMouse < mouseRadius) {
-          const force = (mouseRadius - distMouse) / mouseRadius;
-          p.x += dxMouse * force * 0.03;
-          p.y += dyMouse * force * 0.03;
-        }
+          // Mouse interaction (gentle attraction)
+          const dxMouse = mouseX - p.x;
+          const dyMouse = mouseY - p.y;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+          
+          if (distMouse < mouseRadius) {
+            const force = (mouseRadius - distMouse) / mouseRadius;
+            p.x += dxMouse * force * 0.03;
+            p.y += dyMouse * force * 0.03;
+          }
 
-        // Draw particle node
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        // Varying pulse intensity for nodes
-        const pulse = Math.sin(time + i) * 0.2 + 0.8;
-        ctx.fillStyle = `rgba(242, 125, 38, ${0.4 * pulse})`;
-        ctx.fill();
+          // Draw particle node
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          const pulse = Math.sin(time + i) * 0.2 + 0.8;
+          ctx.fillStyle = `rgba(242, 125, 38, ${0.4 * pulse})`;
+          ctx.fill();
 
-        // Connect particles
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          // Connect particles
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x;
+            const dy = p.y - p2.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < connectionRadius) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            
-            const opacity = 1 - dist / connectionRadius;
-            // Base connection
-            ctx.strokeStyle = `rgba(242, 125, 38, ${opacity * 0.15})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-
-            // Occasional "Data Pulse" signal along the line
-            if (i % 7 === 0 && opacity > 0.4) {
-              const pulsePos = (time * 0.5 + i) % 1;
-              const px = p.x + (p2.x - p.x) * pulsePos;
-              const py = p.y + (p2.y - p.y) * pulsePos;
-              
+            if (dist < connectionRadius) {
               ctx.beginPath();
-              ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-              ctx.fillStyle = `rgba(242, 125, 38, ${opacity * 0.8})`;
-              ctx.fill();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              
+              const opacity = 1 - dist / connectionRadius;
+              ctx.strokeStyle = `rgba(242, 125, 38, ${opacity * 0.15})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
             }
           }
         }
@@ -141,7 +131,7 @@ const NeuralMesh = () => {
     return () => {
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
