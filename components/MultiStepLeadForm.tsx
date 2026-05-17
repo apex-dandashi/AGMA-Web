@@ -23,7 +23,9 @@ import {
   Megaphone,
   Search,
   Cpu,
-  Clock
+  Clock,
+  Lightbulb,
+  Code
 } from 'lucide-react';
 import Magnetic from './ui/Magnetic';
 import Tilt from './ui/Tilt';
@@ -67,9 +69,30 @@ const services = [
   { 
     id: 'web', 
     title: 'المنتجات الرقمية', 
-    icon: Globe, 
+    icon: Code, 
     desc: 'تطوير المواقع والبرمجيات المتطورة',
     subServices: ['تطوير متاجر سلة وزد', 'تطوير تطبيقات الويب', 'تحسين تجربة المستخدم UX', 'الصيانة والدعم الفني']
+  },
+  { 
+    id: 'strategy', 
+    title: 'الاستراتيجية والاستشارات', 
+    icon: Lightbulb, 
+    desc: 'خطط تسويقية، تحول رقمي، AI، وأبحاث سوق',
+    subServices: ['الاستراتيجية التسويقية الشاملة', 'استشارات التحول الرقمي والـ AI', 'أبحاث السوق وتحليل المنافسين']
+  },
+  { 
+    id: 'pr', 
+    title: 'العلاقات العامة والإعلام', 
+    icon: Globe, 
+    desc: 'إدارة السمعة، الحضور الإعلامي، والفعاليات',
+    subServices: ['العلاقات العامة وإدارة الإعلام', 'الشراء الإعلامي', 'تسويق الفعاليات والتفعيلات']
+  },
+  { 
+    id: 'other', 
+    title: 'أخرى', 
+    icon: Sparkles, 
+    desc: 'لديك احتياج مختلف أو مشروع خاص؟',
+    subServices: []
   },
 ];
 
@@ -94,19 +117,45 @@ export default function MultiStepLeadForm() {
   const [formData, setFormData] = useState({
     services: [] as string[],
     subServices: [] as string[],
+    otherServiceText: '',
     budget: '',
     urgency: '',
     details: '',
     name: '',
     company: '',
+    sector: '',
     jobTitle: '',
     email: '',
     phone: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
+
+  const validateStep = (currentStep: number) => {
+    const newErrors: string[] = [];
+    if (currentStep === 1) {
+      if (formData.services.length === 0) newErrors.push('يرجى اختيار خدمة واحدة على الأقل');
+      if (formData.services.includes('other') && !formData.otherServiceText) newErrors.push('يرجى تحديد الخدمة المطلوبة');
+    } else if (currentStep === 2) {
+      if (!formData.budget) newErrors.push('يرجى اختيار الميزانية المتوقعة');
+      if (!formData.urgency) newErrors.push('يرجى تحديد مدى الاستعجال');
+      if (formData.details.length < 5) newErrors.push('يرجى كتابة تفاصيل المشكلة (5 أحرف على الأقل)');
+    } else if (currentStep === 3) {
+      if (!formData.name) newErrors.push('الاسم الكامل مطلوب');
+      if (!formData.email) newErrors.push('البريد الإلكتروني مطلوب');
+      if (!formData.phone) newErrors.push('رقم الجوال مطلوب');
+      if (!formData.sector) newErrors.push('القطاع مطلوب');
+      // Basic email regex
+      if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.push('البريد الإلكتروني غير صالح');
+    }
+    setErrors(newErrors);
+    return newErrors.length === 0;
+  };
 
   const nextStep = () => {
+    if (!validateStep(step)) return;
+    setErrors([]);
     setDirection(1);
     setStep(s => s + 1);
   };
@@ -123,6 +172,7 @@ export default function MultiStepLeadForm() {
         return {
           ...prev,
           services: prev.services.filter(s => s !== id),
+          otherServiceText: id === 'other' ? '' : prev.otherServiceText,
           // Also remove associated subservices if the main service is deselected
           subServices: prev.subServices.filter(sub => {
             const parent = services.find(s => s.id === id);
@@ -146,7 +196,7 @@ export default function MultiStepLeadForm() {
 
   const generateWhatsAppMessage = () => {
     const selectedServiceTitles = formData.services
-      .map(id => services.find(s => s.id === id)?.title)
+      .map(id => id === 'other' ? `أخرى: ${formData.otherServiceText}` : services.find(s => s.id === id)?.title)
       .filter(Boolean);
 
     let message = `*طلب استشارة مشروع جديد - جيل الذكاء*\n\n`;
@@ -163,6 +213,7 @@ export default function MultiStepLeadForm() {
     
     message += `*معلومات التواصل:*\n`;
     message += `الاسم: ${formData.name}\n`;
+    message += `القطاع: ${formData.sector}\n`;
     message += `الشركة: ${formData.company}\n`;
     message += `المسمى الوظيفي: ${formData.jobTitle}\n`;
     message += `الهاتف: ${formData.phone}\n`;
@@ -179,6 +230,7 @@ export default function MultiStepLeadForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateStep(3)) return;
     setIsSubmitting(true);
     // Simulate API
     await new Promise(r => setTimeout(r, 2000));
@@ -229,8 +281,8 @@ export default function MultiStepLeadForm() {
             setIsSuccess(false);
             setStep(1);
             setFormData({
-                services: [], subServices: [], budget: '', urgency: '', details: '', name: '',
-                company: '', jobTitle: '', email: '', phone: ''
+                services: [], subServices: [], otherServiceText: '', budget: '', urgency: '', details: '', name: '',
+                company: '', sector: '', jobTitle: '', email: '', phone: ''
             });
           }}
           className="text-pulse-orange font-bold text-sm hover:underline tracking-widest uppercase"
@@ -349,12 +401,45 @@ export default function MultiStepLeadForm() {
                   ))}
                 </div>
 
-                <div className="flex justify-center pt-8">
+                <AnimatePresence>
+                  {formData.services.includes('other') && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="max-w-xl mx-auto w-full space-y-4 pt-6"
+                    >
+                      <label className="text-sm font-bold text-gray-medium uppercase tracking-widest flex items-center gap-3">
+                        <Sparkles size={18} className="text-pulse-orange" /> وضح لنا الخدمة المطلوبة (أخرى)
+                      </label>
+                      <input 
+                        type="text"
+                        value={formData.otherServiceText}
+                        onChange={(e) => setFormData({ ...formData, otherServiceText: e.target.value })}
+                        placeholder="مثال: تصوير استراتيجي، إنتاج بودكاست، إلخ..."
+                        className="w-full bg-gray-dark/10 border-2 border-pulse-orange/50 hover:border-pulse-orange rounded-xl py-4 px-6 text-snow transition-all duration-300 focus:outline-none focus:bg-gray-dark/20 focus:ring-4 focus:ring-pulse-orange/10 placeholder:text-gray-medium/30"
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="flex justify-center flex-col items-center gap-6 pt-8">
+                  <AnimatePresence>
+                    {errors.length > 0 && step === 1 && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="bg-red-500/10 border border-red-500/50 text-red-500 px-4 py-2 rounded-lg text-sm font-bold"
+                      >
+                        {errors[0]}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                   <Magnetic>
                     <button 
                       onClick={nextStep}
-                      disabled={formData.services.length === 0}
-                      className="btn-primary px-16 py-4 text-xl flex items-center gap-3 disabled:opacity-50"
+                      className="btn-primary px-16 py-4 text-xl flex items-center gap-3"
                     >
                       التالي <ChevronLeft size={24} />
                     </button>
@@ -421,10 +506,17 @@ export default function MultiStepLeadForm() {
                     <div className="relative group">
                         <textarea 
                           value={formData.details}
-                          onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                          onChange={(e) => {
+                            setFormData({ ...formData, details: e.target.value });
+                            if (errors.length > 0) setErrors([]);
+                          }}
                           placeholder="مثال: نريد أتمتة عملية الرد على العملاء بشكل كامل مع دمج نظام CRM لتحسين المتابعة، ورفع الوعي بالعلامة التجارية في السوق السعودي..."
                           rows={8}
-                          className="contact-input min-h-[300px] resize-none text-xl p-10 bg-gray-dark/5 focus:bg-gray-dark/10 border-gray-dark/50 leading-relaxed placeholder:text-gray-dark/50"
+                          className={`w-full min-h-[300px] bg-gray-dark/10 border-2 rounded-2xl p-10 text-xl text-snow transition-all duration-300 resize-none leading-relaxed placeholder:text-gray-medium/30 focus:outline-none ${
+                            errors.some(e => e.includes('تفاصيل')) 
+                              ? 'border-red-500/50 bg-red-500/5' 
+                              : 'border-gray-dark/50 group-hover:border-pulse-orange/30 focus:border-pulse-orange focus:bg-gray-dark/20 focus:ring-4 focus:ring-pulse-orange/10'
+                          }`}
                         />
                         <div className="absolute bottom-6 left-6 text-[10px] font-mono text-pulse-orange/30">
                             SYSTEM_ACTIVE_DATA_STREAM
@@ -433,19 +525,32 @@ export default function MultiStepLeadForm() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-8 pt-6">
-                  <button onClick={prevStep} className="flex-1 py-4 text-gray-medium font-bold hover:text-snow transition-colors flex items-center justify-center gap-3 text-lg">
-                    <ChevronRight size={24} /> السابق
-                  </button>
-                  <Magnetic className="flex-[3]">
-                    <button 
-                      onClick={nextStep}
-                      disabled={!formData.budget || !formData.urgency || formData.details.length < 5}
-                      className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3 disabled:opacity-50"
-                    >
-                      التالي <ChevronLeft size={24} />
+                <div className="flex flex-col items-center gap-8 pt-6">
+                  <AnimatePresence>
+                    {errors.length > 0 && step === 2 && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="bg-red-500/10 border border-red-500/50 text-red-500 px-6 py-3 rounded-xl text-sm font-bold"
+                      >
+                        {errors[0]}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  <div className="flex items-center gap-8 w-full">
+                    <button onClick={prevStep} className="flex-1 py-4 text-gray-medium font-bold hover:text-snow transition-colors flex items-center justify-center gap-3 text-lg">
+                      <ChevronRight size={24} /> السابق
                     </button>
-                  </Magnetic>
+                    <Magnetic className="flex-[3]">
+                      <button 
+                        onClick={nextStep}
+                        className="btn-primary w-full py-5 text-xl flex items-center justify-center gap-3"
+                      >
+                        التالي <ChevronLeft size={24} />
+                      </button>
+                    </Magnetic>
+                  </div>
                 </div>
               </div>
             )}
@@ -467,10 +572,17 @@ export default function MultiStepLeadForm() {
                   />
                   <FormField 
                     icon={Building2} 
-                    label="اسم الشركة" 
+                    label="اسم الشركة / العلامة" 
                     placeholder="شركة المسار الرقمي" 
                     value={formData.company} 
                     onChange={(v: string) => setFormData({...formData, company: v})} 
+                  />
+                  <FormField 
+                    icon={Target} 
+                    label="القطاع" 
+                    placeholder="مثال: التقنية، الأغذية، العقارات..." 
+                    value={formData.sector} 
+                    onChange={(v: string) => setFormData({...formData, sector: v})} 
                   />
                   <FormField 
                     icon={Briefcase} 
@@ -498,7 +610,19 @@ export default function MultiStepLeadForm() {
                   onChange={(v: string) => setFormData({...formData, email: v})} 
                 />
 
-                <div className="flex flex-col gap-4 pt-10">
+                <div className="flex flex-col gap-6 pt-10">
+                  <AnimatePresence>
+                    {errors.length > 0 && step === 3 && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="bg-red-500/10 border border-red-500/50 text-red-500 px-6 py-3 rounded-xl text-center text-sm font-bold"
+                      >
+                        {errors[0]}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                   <div className="flex items-center gap-4">
                     <button type="button" onClick={prevStep} className="flex-1 py-4 text-gray-medium font-bold hover:text-snow transition-colors flex items-center justify-center gap-2">
                       <ChevronRight size={20} /> السابق
@@ -506,7 +630,7 @@ export default function MultiStepLeadForm() {
                     <Magnetic className="flex-[2]">
                       <button 
                         type="submit"
-                        disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
+                        disabled={isSubmitting}
                         className="btn-primary w-full py-4 text-lg flex items-center justify-center gap-3 disabled:opacity-50 relative overflow-hidden"
                       >
                         {isSubmitting ? (
@@ -530,8 +654,7 @@ export default function MultiStepLeadForm() {
                   <button 
                     type="button"
                     onClick={handleWhatsAppSend}
-                    disabled={!formData.name || !formData.email || !formData.phone}
-                    className="w-full py-4 rounded-xl border border-green-500/20 bg-green-500/5 hover:bg-green-500/10 text-green-500 font-bold flex items-center justify-center gap-3 transition-all group disabled:opacity-50"
+                    className="w-full py-4 rounded-xl border border-green-500/20 bg-green-500/5 hover:bg-green-500/10 text-green-500 font-bold flex items-center justify-center gap-3 transition-all group"
                   >
                     <MessageCircle size={20} className="group-hover:scale-110 transition-transform" />
                     أرسل التفاصيل عبر واتساب مباشرة
@@ -556,19 +679,22 @@ function FormField({ label, icon: Icon, placeholder, value, onChange, type = "te
     dir?: string 
 }) {
   return (
-    <div className="space-y-2">
-      <label className="text-xs font-bold text-gray-medium uppercase tracking-widest flex items-center gap-2">
-        <Icon size={14} className="text-pulse-orange" /> {label}
+    <div className="space-y-3 group">
+      <label className="text-xs font-bold text-gray-medium uppercase tracking-widest flex items-center gap-2 group-focus-within:text-pulse-orange transition-colors">
+        <Icon size={14} className="group-focus-within:scale-110 transition-transform" /> {label}
       </label>
-      <input 
-        required 
-        type={type} 
-        dir={dir}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="contact-input" 
-        placeholder={placeholder} 
-      />
+      <div className="relative">
+        <input 
+          required 
+          type={type} 
+          dir={dir}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="w-full bg-gray-dark/10 border-2 border-gray-dark/50 hover:border-gray-dark rounded-xl py-4 px-5 text-snow transition-all duration-300 focus:outline-none focus:border-pulse-orange focus:bg-gray-dark/20 focus:ring-4 focus:ring-pulse-orange/10 placeholder:text-gray-medium/30" 
+          placeholder={placeholder} 
+        />
+        <div className="absolute bottom-0 right-0 h-[2px] w-0 bg-pulse-orange transition-all duration-500 group-focus-within:w-full" />
+      </div>
     </div>
   );
 }
