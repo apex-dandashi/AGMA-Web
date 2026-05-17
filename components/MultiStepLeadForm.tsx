@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Check, 
@@ -114,6 +114,7 @@ const urgencies = [
 export default function MultiStepLeadForm() {
   const [step, setStep] = useState(1);
   const [direction, setDirection] = useState(1);
+  const formTopRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     services: [] as string[],
     subServices: [] as string[],
@@ -131,6 +132,14 @@ export default function MultiStepLeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+
+  const scrollToTop = () => {
+    if (formTopRef.current) {
+      const yOffset = -120; // إزاحة لتجنب تغطية الشريط العلوي
+      const y = formTopRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   const validateStep = (currentStep: number) => {
     const newErrors: string[] = [];
@@ -150,6 +159,11 @@ export default function MultiStepLeadForm() {
       if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) newErrors.push('البريد الإلكتروني غير صالح');
     }
     setErrors(newErrors);
+    
+    if (newErrors.length > 0) {
+        scrollToTop();
+    }
+    
     return newErrors.length === 0;
   };
 
@@ -158,11 +172,13 @@ export default function MultiStepLeadForm() {
     setErrors([]);
     setDirection(1);
     setStep(s => s + 1);
+    setTimeout(scrollToTop, 100);
   };
 
   const prevStep = () => {
     setDirection(-1);
     setStep(s => s - 1);
+    setTimeout(scrollToTop, 100);
   };
 
   const handleServiceToggle = (id: string) => {
@@ -294,7 +310,7 @@ export default function MultiStepLeadForm() {
   }
 
   return (
-    <div className="w-full max-w-5xl mx-auto">
+    <div ref={formTopRef} className="w-full max-w-5xl mx-auto scroll-mt-24">
       {/* Progress Bar */}
       <div className="mb-12 max-w-3xl mx-auto">
         <div className="flex justify-between mb-4">
