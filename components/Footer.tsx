@@ -38,12 +38,16 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-snow font-bold mb-6">خدماتنا</h4>
-            <ul className="space-y-4 text-sm text-gray-medium">
-              <li><Link href="/services#ai-automation" className="hover:text-pulse-orange transition-colors">الذكاء الاصطناعي والأتمتة</Link></li>
-              <li><Link href="/services#performance-marketing" className="hover:text-pulse-orange transition-colors">التسويق الأدائي</Link></li>
-              <li><Link href="/services#seo-content" className="hover:text-pulse-orange transition-colors">السيو والمحتوى</Link></li>
-              <li><Link href="/services#branding-creative" className="hover:text-pulse-orange transition-colors">الهوية والتصميم</Link></li>
+            <h4 className="text-snow font-bold mb-6">خدماتنا الثمانية</h4>
+            <ul className="space-y-3 text-sm text-gray-medium">
+              <li><Link href="/services/strategy-consulting" className="hover:text-pulse-orange transition-colors">الاستشارات الاستراتيجية</Link></li>
+              <li><Link href="/services/ai-automation" className="hover:text-pulse-orange transition-colors">الذكاء الاصطناعي والأتمتة</Link></li>
+              <li><Link href="/services/web-digital" className="hover:text-pulse-orange transition-colors">تطوير الويب والمنصات الرقمية</Link></li>
+              <li><Link href="/services/performance-marketing" className="hover:text-pulse-orange transition-colors">التسويق الأدائي والإعلانات</Link></li>
+              <li><Link href="/services/social-media" className="hover:text-pulse-orange transition-colors">إدارة السوشال ميديا والمجتمعات</Link></li>
+              <li><Link href="/services/seo-content" className="hover:text-pulse-orange transition-colors">السيو وصناعة المحتوى</Link></li>
+              <li><Link href="/services/branding-creative" className="hover:text-pulse-orange transition-colors">الهوية والتصميم الإبداعي</Link></li>
+              <li><Link href="/services/pr-media" className="hover:text-pulse-orange transition-colors">العلاقات العامة والإعلام</Link></li>
             </ul>
           </div>
 
